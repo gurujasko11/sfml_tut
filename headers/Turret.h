@@ -10,11 +10,11 @@ class Turret : public Cell
 public:
 		int range;
 		int damage;
-		int delay;
-		int current_delay;
 		Turret();
-		Turret(Cell_type cell_type, sf::RectangleShape* shape, int range);
-		std::function<Enemy*(std::list<Enemy*>)> find_target;
+		Turret(Cell_type cell_type, sf::RectangleShape& shape, int range);
+		std::list<Enemy*> find_enemies_in_range();
+		std::function<Enemy*()> find_target;
+
 };
 
 #endif //TURRET_H

@@ -1,9 +1,12 @@
 #include <iostream>
 #include "../headers/Game.h"
+#include "../headers/ObjectsStorage.h"
 
 Game::Game(Background& background, sf::RenderWindow* window)
 :background(background),
- window(window){}
+ window(window) {
+	objectStorage = new ObjectStorage();
+}
 
 void Game::play()
 {
@@ -16,8 +19,8 @@ void Game::play()
 
 void Game::move_enemies()
 {
-		std::list<Enemy*>::iterator it = enemies.begin();
-		while(it != enemies.end())
+		std::list<Enemy*>::iterator it = objectStorage->get_enemies_begin();
+		while(it != objectStorage->get_enemies_end())
 		{
 			if((*it)->is_on_target())
 			{
@@ -30,8 +33,8 @@ void Game::move_enemies()
 
 void Game::draw_enemies()
 {
-	std::list<Enemy*>::iterator it = enemies.begin();
-	while(it != enemies.end())
+	std::list<Enemy*>::iterator it = objectStorage->get_enemies_begin();
+	while(it != objectStorage->get_enemies_end())
 	{
 		window->draw(*((*it)->shape));
 		it++;
@@ -40,10 +43,19 @@ void Game::draw_enemies()
 
 void Game::draw_turrets()
 {
-	std::list<Turret*>::iterator it = turrets.begin();
-	while(it != turrets.end())
+	std::list<Turret*>::iterator it = objectStorage->get_turrets_begin();
+	while(it != objectStorage->get_turrets_end())
 	{
 		window->draw((*it)->shape);
+		(*it)->find_target();
 		it++;
 	}
+}
+
+
+void Game::add_enemy(Enemy* enemy) {
+	objectStorage->add_enemy(enemy);
+}
+void Game::add_turret(Turret* turret) {
+	objectStorage->add_turrets(turret);
 }

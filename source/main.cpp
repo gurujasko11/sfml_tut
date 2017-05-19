@@ -52,7 +52,7 @@ int main()
 	sf::RectangleShape rc1(sf::Vector2<float>(32,32));
 	rc1.setTexture(&trtTexture);
 	rc1.setPosition(sf::Vector2<float>(6*32,6*32));
-//	Turret turret1(Cell::TURRET,rc1,50);
+	Turret turret1(Cell::TURRET,rc1,50);
 
 	nm.setPosition(sf::Vector2f(0.0f,32.0f));
 	nm2.setPosition(sf::Vector2f(0.0f,32.0f));
@@ -65,21 +65,11 @@ int main()
 //	std::list<sf::Vector2<float> *> targets = path.get_targets();
 
 	float speed = 0.3;
-	std::list<Enemy*> enemies;
-	std::list<Turret*> turrets;
-
 	Enemy enemy(&nm, speed, 100);
-//	Enemy enemy1(&nm2, speed, 100);
-
-	enemies.push_back(&enemy);
-//	enemies.push_back(&enemy1);
-
-//	turrets.push_back(&turret1);
-	std::cout << "INIT" <<std::endl;
 
 	Game game(bg, &window);
-	game.enemies = enemies;
-	game.turrets = turrets;
+	game.add_enemy(&enemy);
+	game.add_turret(&turret1);
 
 	while (window.isOpen())
 	{

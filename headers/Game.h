@@ -6,9 +6,13 @@
 #include "Enemy.h"
 #include "Turret.h"
 #include "Background.h"
+#include "ObjectsStorage.h"
 
 class Game
 {
+private:
+		ObjectStorage* objectStorage;
+
 public:
 		void play();
 //private:
@@ -17,8 +21,6 @@ public:
 //		TODO
 		Game(Background& background, sf::RenderWindow* window);
 		sf::RenderWindow* window;
-		std::list<Enemy*> enemies;
-		std::list<Turret*> turrets;
 		Background background;
 
 		void move_enemies();
@@ -26,5 +28,7 @@ public:
 		void draw_enemies();
 		void draw_turrets();
 
+		void add_enemy(Enemy* enemy);
+		void add_turret(Turret* turret);
 };
 #endif //GAME_H
