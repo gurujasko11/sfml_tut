@@ -1,6 +1,6 @@
 #include <iostream>
 #include "../headers/Game.h"
-#include "../headers/ObjectsStorage.h"
+#include "../headers/ObjectStorage.h"
 
 Game::Game(Background& background, sf::RenderWindow* window)
 :background(background),

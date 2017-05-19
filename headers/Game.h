@@ -6,7 +6,7 @@
 #include "Enemy.h"
 #include "Turret.h"
 #include "Background.h"
-#include "ObjectsStorage.h"
+#include "ObjectStorage.h"
 
 class Game
 {
