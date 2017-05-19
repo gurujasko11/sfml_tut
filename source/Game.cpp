@@ -47,7 +47,9 @@ void Game::draw_turrets()
 	while(it != objectStorage->get_turrets_end())
 	{
 		window->draw((*it)->shape);
-		(*it)->find_target();
+		if((*it)->find_target() != NULL) {
+			std::cout << "x" << std::endl;
+		}
 		it++;
 	}
 }

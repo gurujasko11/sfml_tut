@@ -4,6 +4,8 @@
 #include "Enemy.h"
 #include "Turret.h"
 
+class Turret;
+
 class ObjectStorage {
 private:
 		std::list<Enemy*> enemies;

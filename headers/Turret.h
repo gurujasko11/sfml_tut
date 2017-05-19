@@ -5,8 +5,12 @@
 #include "Cell.h"
 #include "Enemy.h"
 
+class ObjectStorage;
+
 class Turret : public Cell
 {
+private:
+		ObjectStorage* objectStorage;
 public:
 		int range;
 		int damage;
