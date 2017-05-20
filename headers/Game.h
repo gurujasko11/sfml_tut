@@ -10,7 +10,7 @@
 class Game
 {
 private:
-		ObjectStorage* objectStorage;
+		ObjectStorage* objectStorage;// when i made this static, S*** happens but WHY?
 
 public:
 		void play();

@@ -58,3 +58,11 @@ float Enemy::get_distance_from(sf::Shape* shape)
 					  (shape->getPosition().y-this->shape->getPosition().y)
 	);
 }
+
+float Enemy::getSpeed () const {
+	return speed;
+}
+
+int Enemy::getHp () const {
+	return hp;
+}

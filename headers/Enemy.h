@@ -17,6 +17,10 @@ public:
 
 		static std::list<sf::Shape*> targets;
 		sf::Shape* shape;
+
+		float getSpeed () const;
+		int getHp () const;
+
 private:
 		std::list<sf::Shape*>::iterator index;
 		float speed;

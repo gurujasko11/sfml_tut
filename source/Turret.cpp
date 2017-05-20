@@ -34,7 +34,7 @@ std::list<Enemy*> Turret::find_enemies_in_range() {
 Turret::Turret()
 //				: find_target(FinderCatalog::default_finder(this))
 {
-	find_target = std::bind(&FinderCatalog::default_finder, this);
+	find_target = std::bind(&FinderCatalog::closest_enemy_finder, this);
 }
 
 
@@ -43,5 +43,5 @@ Turret::Turret(Cell_type cell_type, sf::RectangleShape& shape, int range)
 				  range(range)
 //				  find_target(FinderCatalog::default_finder(this))
 {
-	find_target = std::bind(&FinderCatalog::default_finder, this);
+	find_target = std::bind(&FinderCatalog::closest_enemy_finder, this);
 }
