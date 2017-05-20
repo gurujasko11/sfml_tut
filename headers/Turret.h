@@ -9,9 +9,8 @@ class ObjectStorage;
 
 class Turret : public Cell
 {
-private:
-		ObjectStorage* objectStorage;
 public:
+		ObjectStorage* objectStorage;
 		int range;
 		int damage;
 		Turret();

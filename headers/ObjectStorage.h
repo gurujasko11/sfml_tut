@@ -2,7 +2,6 @@
 #define SFML_TUT_OBJECTSSTORAGE_H
 
 #include "Enemy.h"
-#include "Turret.h"
 
 class Turret;
 

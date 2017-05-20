@@ -1,11 +1,12 @@
 #include <iostream>
 #include "../headers/Game.h"
-#include "../headers/ObjectStorage.h"
+#include "../headers/Turret.h"
 
 Game::Game(Background& background, sf::RenderWindow* window)
 :background(background),
  window(window) {
 	objectStorage = new ObjectStorage();
+	//Turret::objectStorage = objectStorage;
 }
 
 void Game::play()
@@ -59,5 +60,6 @@ void Game::add_enemy(Enemy* enemy) {
 	objectStorage->add_enemy(enemy);
 }
 void Game::add_turret(Turret* turret) {
+	turret->objectStorage = objectStorage;
 	objectStorage->add_turrets(turret);
 }

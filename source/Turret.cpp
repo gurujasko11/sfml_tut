@@ -1,5 +1,7 @@
+#include "../headers/Enemy.h"
 #include "../headers/Turret.h"
 #include "../headers/FinderCatalog.h"
+#include "../headers/ObjectStorage.h"
 
 //std::function<Enemy*()> Turret::default_finder = [this]() -> Enemy* {
 //		Enemy* result = NULL;
@@ -22,7 +24,12 @@
 //};
 
 std::list<Enemy*> Turret::find_enemies_in_range() {
-	return std::list<Enemy*>();
+	std::list<Enemy*> result;
+	for(std::list<Enemy*>::iterator i=objectStorage->get_enemies_begin(); i!=objectStorage->get_enemies_end();i++) {
+		if((*i)->get_distance_from(&shape) < range)
+			result.push_back(*i);
+	}
+	return result;
 }
 Turret::Turret()
 //				: find_target(FinderCatalog::default_finder(this))
