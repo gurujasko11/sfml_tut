@@ -8,6 +8,9 @@ void ObjectStorage::add_enemy (Enemy* enemy) {
 void ObjectStorage::add_turrets(Turret* turret) {
 	turrets.push_back(turret);
 }
+void ObjectStorage::add_bullet(Bullet* bullet) {
+	bullets.push_back(bullet);
+}
 
 std::list<Enemy*>::iterator ObjectStorage::get_enemies_begin() {
 	return enemies.begin();
@@ -21,6 +24,16 @@ std::list<Turret*>::iterator ObjectStorage::get_turrets_begin() {
 }
 std::list<Turret*>::iterator ObjectStorage::get_turrets_end() {
 	return turrets.end();
+}
+
+std::list<Bullet*>::iterator ObjectStorage::get_bullets_begin() {
+	return bullets.begin();
+}
+std::list<Bullet*>::iterator ObjectStorage::get_bullets_end() {
+	return bullets.end();
+}
+void ObjectStorage::remove_bullet(Bullet* bullet) {
+	bullets.remove(bullet);
 }
 
 std::list<Enemy*> ObjectStorage::get_enemy_in_range(sf::Shape* shape, float range) {

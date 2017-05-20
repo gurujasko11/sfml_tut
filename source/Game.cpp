@@ -14,6 +14,10 @@ void Game::play()
 	window->clear();
 	background.draw_bg(*window);
 	draw_turrets();
+
+	move_bullets();
+	draw_bullets();
+
 	move_enemies();
 	draw_enemies();
 }
@@ -32,6 +36,23 @@ void Game::move_enemies()
 		}
 };
 
+void Game::move_bullets()
+{
+	std::list<Bullet*>::iterator it = objectStorage->get_bullets_begin();
+	while(it != objectStorage->get_bullets_end())
+	{
+		if((*it)->execute()) {
+			Bullet* bullet_to_delete = (*it);
+			*it = NULL;
+			delete bullet_to_delete;
+//			objectStorage->remove_bullet(*it);
+		}
+//		else
+			it++;
+	}
+	objectStorage->remove_bullet(NULL);
+};
+
 void Game::draw_enemies()
 {
 	std::list<Enemy*>::iterator it = objectStorage->get_enemies_begin();
@@ -48,13 +69,23 @@ void Game::draw_turrets()
 	while(it != objectStorage->get_turrets_end())
 	{
 		window->draw((*it)->shape);
-		if((*it)->find_target() != NULL) {
+		if((*it)->can_shoot() && (*it)->find_target() != NULL) {
+			(*it)->shoot();
 			std::cout << "x" << std::endl;
 		}
 		it++;
 	}
 }
 
+void Game::draw_bullets()
+{
+	std::list<Bullet*>::iterator it = objectStorage->get_bullets_begin();
+	while(it != objectStorage->get_bullets_end())
+	{
+		window->draw(*((*it)->shape));
+		it++;
+	}
+}
 
 void Game::add_enemy(Enemy* enemy) {
 	objectStorage->add_enemy(enemy);

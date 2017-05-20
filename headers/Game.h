@@ -23,9 +23,11 @@ public:
 		Background background;
 
 		void move_enemies();
+		void move_bullets();
 
 		void draw_enemies();
 		void draw_turrets();
+		void draw_bullets();
 
 		void add_enemy(Enemy* enemy);
 		void add_turret(Turret* turret);

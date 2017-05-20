@@ -50,9 +50,13 @@ int main()
 	sf::CircleShape nm4(16);
 
 	sf::RectangleShape rc1(sf::Vector2<float>(32,32));
+	sf::RectangleShape rc2(sf::Vector2<float>(32,32));
 	rc1.setTexture(&trtTexture);
 	rc1.setPosition(sf::Vector2<float>(6*32,6*32));
-	Turret turret1(Cell::TURRET,rc1,50);
+	rc2.setTexture(&trtTexture);
+	rc2.setPosition(sf::Vector2<float>(9*32,6*32));
+	Turret turret1(Cell::TURRET,rc1,150);
+	Turret turret2(Cell::TURRET,rc2,150);
 
 	nm.setPosition(sf::Vector2f(0.0f,32.0f));
 	nm2.setPosition(sf::Vector2f(0.0f,32.0f));
@@ -70,6 +74,7 @@ int main()
 	Game game(bg, &window);
 	game.add_enemy(&enemy);
 	game.add_turret(&turret1);
+	game.add_turret(&turret2);
 
 	while (window.isOpen())
 	{

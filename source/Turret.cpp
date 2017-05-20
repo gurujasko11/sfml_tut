@@ -1,3 +1,4 @@
+#include <iostream>
 #include "../headers/Enemy.h"
 #include "../headers/Turret.h"
 #include "../headers/FinderCatalog.h"
@@ -44,4 +45,22 @@ Turret::Turret(Cell_type cell_type, sf::RectangleShape& shape, int range)
 //				  find_target(FinderCatalog::default_finder(this))
 {
 	find_target = std::bind(&FinderCatalog::closest_enemy_finder, this);
+}
+
+bool Turret::can_shoot() {
+	if(time_of_last_shot + time_beetwen_shot < std::chrono::system_clock::now()) {
+//		time_of_last_shot = std::chrono::system_clock::now();
+		return true;
+	}
+	return false;
+};
+
+void Turret::shoot () {
+	sf::Texture* texture = new sf::Texture();
+	texture->loadFromFile("res/bull1.png");
+	sf::CircleShape* bullet_shape = new sf::CircleShape(8);
+	bullet_shape -> setTexture(texture);
+	bullet_shape -> setPosition(shape.getPosition());
+	objectStorage -> add_bullet(new Bullet(bullet_shape,find_target(), 10, 1));
+	time_of_last_shot = std::chrono::system_clock::now();
 }
