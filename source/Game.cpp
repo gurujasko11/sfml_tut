@@ -1,12 +1,14 @@
 #include <iostream>
 #include "../headers/Game.h"
 #include "../headers/Turret.h"
+#include "../headers/LinearPushStrategy.h"
 
 Game::Game(Background& background, sf::RenderWindow* window)
 :background(background),
  window(window) {
 	objectStorage = new ObjectStorage(this);
 	userInterface = new UserInterface(window);
+	pushStrategy = new LinearPushStrategy(this);
 }
 
 void Game::play()
@@ -14,6 +16,10 @@ void Game::play()
 	window->clear();
 	background.draw_bg(*window);
 	userInterface->show();
+
+	if(!pushStrategy->is_done()){
+		pushStrategy->push();
+	}
 
 	move_movables();
 	draw_movables();

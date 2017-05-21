@@ -8,12 +8,15 @@
 #include "ObjectStorage.h"
 #include "UserInterface.h"
 
+class PushStrategy;
+
 class Game
 {
 private:
 		ObjectStorage* objectStorage;// when i made this static, S*** happens but WHY?
 		UserInterface* userInterface;
 		std::list<Movable*> movables;
+		PushStrategy* pushStrategy;
 public:
 		void play();
 //private:

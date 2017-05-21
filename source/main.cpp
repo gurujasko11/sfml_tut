@@ -71,7 +71,7 @@ int main()
 	Enemy enemy(&nm, speed, 100);
 
 	Game game(bg, &window);
-	game.add_enemy(&enemy);
+	//game.add_enemy(&enemy);
 	game.add_turret(&turret1);
 	game.add_turret(&turret2);
 
