@@ -1,6 +1,7 @@
+#include <iostream>
 #include "../headers/Bullet.h"
-
-bool Bullet::execute () {
+#include "../headers/ObjectStorage.h"
+bool Bullet::move() {
 	if(enemy == NULL)
 		return true;
 	move_shape_to_target();
@@ -26,8 +27,17 @@ void Bullet::move_shape_to_target()
 	shape->move(x*shift.x,x*shift.y);
 }
 
-Bullet::Bullet(sf::Shape* shape, Enemy* enemy, float power = 25, float speed = 1) :
+Bullet::Bullet(sf::Shape* shape, Enemy* enemy, ObjectStorage* objectStorage, float power = 25, float speed = 1) :
 				shape(shape),
+				objectStorage(objectStorage),
 				enemy(enemy),
 				power(power),
 				speed(speed) {};
+
+Bullet::~Bullet() {
+	objectStorage -> remove_bullet(this);
+}
+
+sf::Shape* Bullet::get_shape() {
+	return shape;
+}

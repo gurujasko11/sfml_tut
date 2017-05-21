@@ -6,12 +6,14 @@
 #include "Enemy.h"
 #include "Background.h"
 #include "ObjectStorage.h"
+#include "UserInterface.h"
 
 class Game
 {
 private:
 		ObjectStorage* objectStorage;// when i made this static, S*** happens but WHY?
-
+		UserInterface* userInterface;
+		std::list<Movable*> movables;
 public:
 		void play();
 //private:
@@ -22,14 +24,14 @@ public:
 		sf::RenderWindow* window;
 		Background background;
 
-		void move_enemies();
-		void move_bullets();
-
-		void draw_enemies();
-		void draw_turrets();
-		void draw_bullets();
+		void move_movables();
+		void draw_movables();
 
 		void add_enemy(Enemy* enemy);
 		void add_turret(Turret* turret);
+		void add_movable(Movable* movable);
+
+		void handle_player_input();
+		void draw_userInterface();
 };
 #endif //GAME_H

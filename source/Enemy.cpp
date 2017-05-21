@@ -17,12 +17,9 @@ Enemy::Enemy (sf::Shape* shape, float& speed, int hp = 100)
 				  speed(speed),
 					hp(hp){
 	index = targets.begin();
-	for(std::list<sf::Shape*>::iterator i = targets.begin(); i != targets.end(); i++) {
-		std::cout<<"X= "<<(*i)->getPosition().x<<" Y= "<<(*i)->getPosition().y<<std::endl;
-	}
 }
 
-void Enemy::move_shape_to_target()
+bool Enemy::move()
 {
 	sf::Vector2<float> shift;
 	shift.x = (*index)->getPosition().x - shape->getPosition().x;
@@ -30,24 +27,25 @@ void Enemy::move_shape_to_target()
 
 	if(abs(shift.x) < 1 && abs(shift.y) < 1)
 	{
-		shape->setPosition((*(index))->getPosition());
-		return;
+		next_target();
+		return false;
 	}
 
 	float x = (speed * speed) / ((shift.x * shift.x) + (shift.y * shift.y));
 	x = sqrt(x);
 	shape->move(x*shift.x,x*shift.y);
-}
-
-bool Enemy::is_on_target ()
-{
-	sf::Shape* next_target = *index;
-	if(next_target->getPosition().x == shape->getPosition().x && next_target->getPosition().y == shape->getPosition().y)
-	{
-		return true;
-	}
 	return false;
 }
+
+//bool Enemy::is_on_target ()
+//{
+//	sf::Shape* next_target = *index;
+//	if(next_target->getPosition().x == shape->getPosition().x && next_target->getPosition().y == shape->getPosition().y)
+//	{
+//		return true;
+//	}
+//	return false;
+//}
 
 float Enemy::get_distance_from(sf::Shape* shape)
 {
@@ -65,4 +63,12 @@ float Enemy::getSpeed () const {
 
 int Enemy::getHp () const {
 	return hp;
+}
+
+sf::Shape* Enemy::get_shape(){
+	return shape;
+}
+
+Enemy::~Enemy() {
+
 }

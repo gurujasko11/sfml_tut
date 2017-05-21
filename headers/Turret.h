@@ -8,7 +8,7 @@
 
 class ObjectStorage;
 
-class Turret : public Cell
+class Turret : public Cell, public Movable
 {
 public:
 		ObjectStorage* objectStorage;
@@ -24,7 +24,9 @@ public:
 		std::function<Enemy*()> find_target;
 		void shoot();
 		bool can_shoot();
-
+		bool move() override;
+		sf::Shape* get_shape() override;
+		~Turret();
 };
 
 #endif //TURRET_H

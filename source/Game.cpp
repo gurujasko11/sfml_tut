@@ -5,85 +5,37 @@
 Game::Game(Background& background, sf::RenderWindow* window)
 :background(background),
  window(window) {
-	objectStorage = new ObjectStorage();
-	//Turret::objectStorage = objectStorage;
+	objectStorage = new ObjectStorage(this);
+	userInterface = new UserInterface(window);
 }
 
 void Game::play()
 {
 	window->clear();
 	background.draw_bg(*window);
-	draw_turrets();
+	userInterface->show();
 
-	move_bullets();
-	draw_bullets();
-
-	move_enemies();
-	draw_enemies();
+	move_movables();
+	draw_movables();
 }
 
-void Game::move_enemies()
-{
-		std::list<Enemy*>::iterator it = objectStorage->get_enemies_begin();
-		while(it != objectStorage->get_enemies_end())
-		{
-			if((*it)->is_on_target())
-			{
-				(*it)->next_target();
-			}
-			(*it)->move_shape_to_target();
-			it++;
-		}
-};
-
-void Game::move_bullets()
-{
-	std::list<Bullet*>::iterator it = objectStorage->get_bullets_begin();
-	while(it != objectStorage->get_bullets_end())
+void Game::move_movables() {
+	for(std::list<Movable*>::iterator it = movables.begin();it != movables.end();)
 	{
-		if((*it)->execute()) {
-			Bullet* bullet_to_delete = (*it);
-			*it = NULL;
-			delete bullet_to_delete;
-//			objectStorage->remove_bullet(*it);
+		Movable* movable = *it;
+		if((*it)->move()) {
+			movables.erase(it++);
+			delete movable;
 		}
-//		else
+		else
 			it++;
 	}
-	objectStorage->remove_bullet(NULL);
-};
-
-void Game::draw_enemies()
-{
-	std::list<Enemy*>::iterator it = objectStorage->get_enemies_begin();
-	while(it != objectStorage->get_enemies_end())
-	{
-		window->draw(*((*it)->shape));
-		it++;
-	}
 }
 
-void Game::draw_turrets()
-{
-	std::list<Turret*>::iterator it = objectStorage->get_turrets_begin();
-	while(it != objectStorage->get_turrets_end())
+void Game::draw_movables() {
+	for(std::list<Movable*>::iterator it = movables.begin();it != movables.end(); it++)
 	{
-		window->draw((*it)->shape);
-		if((*it)->can_shoot() && (*it)->find_target() != NULL) {
-			(*it)->shoot();
-			std::cout << "x" << std::endl;
-		}
-		it++;
-	}
-}
-
-void Game::draw_bullets()
-{
-	std::list<Bullet*>::iterator it = objectStorage->get_bullets_begin();
-	while(it != objectStorage->get_bullets_end())
-	{
-		window->draw(*((*it)->shape));
-		it++;
+		window -> draw(*(*it)->get_shape());
 	}
 }
 
@@ -93,4 +45,8 @@ void Game::add_enemy(Enemy* enemy) {
 void Game::add_turret(Turret* turret) {
 	turret->objectStorage = objectStorage;
 	objectStorage->add_turrets(turret);
+}
+
+void Game::add_movable(Movable* movable) {
+	movables.push_back(movable);
 }

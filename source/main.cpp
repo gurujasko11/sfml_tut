@@ -66,7 +66,6 @@ int main()
 
 
 	sf::Vector2<float> target(824.0f, 312.0f);
-//	std::list<sf::Vector2<float> *> targets = path.get_targets();
 
 	float speed = 0.3;
 	Enemy enemy(&nm, speed, 100);
@@ -100,17 +99,8 @@ int main()
 					break;
 			}
 		}
-//		helper(targets,enemies, speed);
 		game.play();
-//		if(turret1.find_target(enemies) != NULL)
-//		{
-//			std::cout << turret1.find_target(enemies)->get_distance_from(&turret1.shape) << std::endl;
-//		}
 		window.display();
-//		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-//		{
-////			std::cout << ms++ << std::endl;
-//		}
 	}
 
 	return 0;
