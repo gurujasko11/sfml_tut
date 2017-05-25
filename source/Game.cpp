@@ -1,49 +1,58 @@
 #include <iostream>
 #include "../headers/Game.h"
+#include "../headers/Turret.h"
+#include "../headers/LinearPushStrategy.h"
 
 Game::Game(Background& background, sf::RenderWindow* window)
 :background(background),
- window(window){}
+ window(window) {
+	objectStorage = new ObjectStorage(this);
+	userInterface = new UserInterface(window);
+	pushStrategy = new LinearPushStrategy(this);
+}
 
 void Game::play()
 {
 	window->clear();
 	background.draw_bg(*window);
-	draw_turrets();
-	move_enemies();
-	draw_enemies();
+	userInterface->show();
+
+	if(!pushStrategy->is_done()){
+		pushStrategy->push();
+	}
+
+	move_movables();
+	draw_movables();
 }
 
-void Game::move_enemies()
-{
-		std::list<Enemy*>::iterator it = enemies.begin();
-		while(it != enemies.end())
-		{
-			if((*it)->is_on_target())
-			{
-				(*it)->next_target();
-			}
-			(*it)->move_shape_to_target();
-			it++;
+void Game::move_movables() {
+	for(std::list<Movable*>::iterator it = movables.begin();it != movables.end();)
+	{
+		Movable* movable = *it;
+		if((*it)->move()) {
+			movables.erase(it++);
+			delete movable;
 		}
-};
-
-void Game::draw_enemies()
-{
-	std::list<Enemy*>::iterator it = enemies.begin();
-	while(it != enemies.end())
-	{
-		window->draw(*((*it)->shape));
-		it++;
+		else
+			it++;
 	}
 }
 
-void Game::draw_turrets()
-{
-	std::list<Turret*>::iterator it = turrets.begin();
-	while(it != turrets.end())
+void Game::draw_movables() {
+	for(std::list<Movable*>::iterator it = movables.begin();it != movables.end(); it++)
 	{
-		window->draw((*it)->shape);
-		it++;
+		window -> draw(*(*it)->get_shape());
 	}
+}
+
+void Game::add_enemy(Enemy* enemy) {
+	objectStorage->add_enemy(enemy);
+}
+void Game::add_turret(Turret* turret) {
+	turret->objectStorage = objectStorage;
+	objectStorage->add_turrets(turret);
+}
+
+void Game::add_movable(Movable* movable) {
+	movables.push_back(movable);
 }

@@ -4,11 +4,19 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <list>
 #include "Enemy.h"
-#include "Turret.h"
 #include "Background.h"
+#include "ObjectStorage.h"
+#include "UserInterface.h"
+
+class PushStrategy;
 
 class Game
 {
+private:
+		ObjectStorage* objectStorage;// when i made this static, S*** happens but WHY?
+		UserInterface* userInterface;
+		std::list<Movable*> movables;
+		PushStrategy* pushStrategy;
 public:
 		void play();
 //private:
@@ -17,14 +25,16 @@ public:
 //		TODO
 		Game(Background& background, sf::RenderWindow* window);
 		sf::RenderWindow* window;
-		std::list<Enemy*> enemies;
-		std::list<Turret*> turrets;
 		Background background;
 
-		void move_enemies();
+		void move_movables();
+		void draw_movables();
 
-		void draw_enemies();
-		void draw_turrets();
+		void add_enemy(Enemy* enemy);
+		void add_turret(Turret* turret);
+		void add_movable(Movable* movable);
 
+		void handle_player_input();
+		void draw_userInterface();
 };
 #endif //GAME_H

@@ -68,10 +68,6 @@ Background BG_Builder::build(sf::Texture& rdTexture, sf::Texture& bgTexture, sf:
 				}
 			}
 		}
-		std::cout << "--------elo-----------" << std::endl;
-		std::cout << point2.first << std::endl;
-		std::cout << point2.second << std::endl;
-		std::cout << "----------------------" << std::endl;
 		sf::RectangleShape rd_shape(sf::Vector2<float>(32,32));
 		rd_shape.setTexture(&fnTexture);
 		rd_shape.setPosition(sf::Vector2f(point2.first*cell_size,point2.second*cell_size));
