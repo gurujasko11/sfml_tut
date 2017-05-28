@@ -9,13 +9,15 @@
 
 class LinearPushStrategy : public PushStrategy{
 public:
-		LinearPushStrategy(Game* game, std::list<Enemy*>* enemies = new std::list<Enemy*>() );
-		bool can_push();
-		void push() override;
+	LinearPushStrategy(Game* game, std::list<Enemy*>* enemies = new std::list<Enemy*>() );
+	bool can_push();
+	void set_step(int step);
+	void push() override;
 
 private:
-		std::chrono::milliseconds time_beetwen_push = std::chrono::milliseconds(100000)/fps;
-		std::chrono::time_point<std::chrono::system_clock> time_of_last_push;
+	int step = 10;
+	std::chrono::milliseconds time_beetwen_push = std::chrono::milliseconds(10000 * step)/fps;
+	std::chrono::time_point<std::chrono::system_clock> time_of_last_push;
 };
 
 #endif //SFML_TUT_LINEARPUSHSTRATEGY_H
