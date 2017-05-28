@@ -19,7 +19,7 @@ Enemy::Enemy (sf::Shape* shape, float& speed, int hp = 100)
 	index = targets.begin();
 }
 
-bool Enemy::move()
+void Enemy::move()
 {
 	sf::Vector2<float> shift;
 	shift.x = (*index)->getPosition().x - shape->getPosition().x;
@@ -28,13 +28,12 @@ bool Enemy::move()
 	if(abs(shift.x) < 1 && abs(shift.y) < 1)
 	{
 		next_target();
-		return false;
+		return;
 	}
 
 	float x = (speed * speed) / ((shift.x * shift.x) + (shift.y * shift.y));
 	x = sqrt(x);
 	shape->move(x*shift.x,x*shift.y);
-	return false;
 }
 
 //bool Enemy::is_on_target ()

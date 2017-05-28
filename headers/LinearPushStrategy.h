@@ -3,6 +3,7 @@
 
 #include "PushStrategy.h"
 #include "Enemy.h"
+#include "GlobalVariables.h"
 #include <iostream>
 #include <chrono>
 
@@ -13,7 +14,7 @@ public:
 		void push() override;
 
 private:
-		std::chrono::duration<int> time_beetwen_push = std::chrono::duration<int>(1);
+		std::chrono::milliseconds time_beetwen_push = std::chrono::milliseconds(100000)/fps;
 		std::chrono::time_point<std::chrono::system_clock> time_of_last_push;
 };
 

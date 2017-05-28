@@ -67,7 +67,7 @@ int main()
 
 	sf::Vector2<float> target(824.0f, 312.0f);
 
-	float speed = 0.3;
+	float speed = 30;
 	Enemy enemy(&nm, speed, 100);
 
 	Game game(bg, &window);

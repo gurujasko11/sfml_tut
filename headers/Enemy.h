@@ -12,7 +12,7 @@ public:
 
 		bool is_on_target();
 		float get_distance_from(sf::Shape* shape);
-		bool move() override;
+		void move() override;
 		void next_target();
 
 		static std::list<sf::Shape*> targets;
