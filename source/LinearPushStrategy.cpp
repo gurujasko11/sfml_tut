@@ -47,3 +47,8 @@ void LinearPushStrategy::push()
 		}
 	}
 }
+
+void LinearPushStrategy::set_step(int step){
+	this->step = step;
+}
+
