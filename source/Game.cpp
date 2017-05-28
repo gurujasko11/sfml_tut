@@ -51,9 +51,10 @@ void Game::move_movables() {
 		bullets.remove_if([enemy] (Bullet* b) -> bool {return b->enemy == enemy;});
 		std::cout << "po REMOVE IF" << std::endl;
 		enemies_to_delete.erase(it++);
-		std::cout << "TU jeszcze jest ok" << std::endl;
 		enemies.remove(enemy);
+		std::cout << "enemies erase" << std::endl;
 		delete enemy;
+		std::cout << "po delete enemy" << std::endl;
 	}
 	for(std::list<Enemy*>::iterator it = enemies.begin();it != enemies.end();it++)
 		(*it)->move();
