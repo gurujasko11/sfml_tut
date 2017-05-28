@@ -18,7 +18,7 @@ LinearPushStrategy::LinearPushStrategy(Game* game, std::list<Enemy*>* enemies)
 	nm3->setTexture(nmTexture);
 	nm4->setTexture(nmTexture);
 
-	float speed = 2;
+	float speed = 0.2;
 	enemies->push_back(new Enemy(nm1, speed, 100));
 	enemies->push_back(new Enemy(nm2, speed, 100));
 	enemies->push_back(new Enemy(nm3, speed, 100));

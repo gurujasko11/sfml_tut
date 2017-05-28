@@ -33,6 +33,7 @@ public:
 		std::list<Bullet*> bullets;
 		std::list<Enemy*> enemies;
 		std::list<Turret*> turrets;
+		std::list<Enemy*> enemies_to_delete;
 		void move_movables();
 		void draw_movables();
 
