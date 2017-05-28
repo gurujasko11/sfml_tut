@@ -5,11 +5,11 @@
 
 class Bullet : public Movable {
 private:
-		Enemy* enemy;
-		float power;
 		float speed;
 		void move_shape_to_target();
 public:
+		float power;
+		Enemy* enemy;
 		sf::Shape* get_shape() override;
 		sf::Shape* shape;
 		void move() override;

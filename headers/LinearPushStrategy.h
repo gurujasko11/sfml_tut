@@ -12,7 +12,7 @@ public:
 		LinearPushStrategy(Game* game, std::list<Enemy*>* enemies = new std::list<Enemy*>() );
 		bool can_push();
 		void push() override;
-
+		std::list<Enemy*>* test_helper(int n);
 private:
 		std::chrono::milliseconds time_beetwen_push = std::chrono::milliseconds(100000)/fps;
 		std::chrono::time_point<std::chrono::system_clock> time_of_last_push;

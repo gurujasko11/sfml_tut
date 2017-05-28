@@ -28,11 +28,36 @@ void Game::play()
 }
 
 void Game::move_movables() {
-	for(std::list<Turret*>::iterator it = turrets.begin();it != turrets.end();it++)
+	for(std::list<Bullet*>::iterator it = bullets.begin();it != bullets.end();){
 		(*it)->move();
-	for(std::list<Bullet*>::iterator it = bullets.begin();it != bullets.end();it++)
-		(*it)->move();
+		if((*it)->enemy->get_distance_from((*it)->shape) < 2) {
+			(*it)->enemy->hp -= (*it)->power;
+			if((*it)->enemy->getHp() < 0){
+				enemies_to_delete.push_back((*it)->enemy);
+				std::cout << "DODAL ENEMY DO LLISTY" << std::endl;
+			}
+			Bullet* bullet_to_delete = *it;
+			bullets.erase(it++);
+			delete bullet_to_delete;
+			std::cout << "DELETED BULLET" << std::endl;
+		}
+		else
+			it++;
+	}
+	//its time for cleanup
+	for(std::list<Enemy*>::iterator it = enemies_to_delete.begin();it != enemies_to_delete.end();) {
+		Enemy* enemy = *it;
+		std::cout << "PRZED REMOVE IF" << std::endl;
+		bullets.remove_if([enemy] (Bullet* b) -> bool {return b->enemy == enemy;});
+		std::cout << "po REMOVE IF" << std::endl;
+		enemies_to_delete.erase(it++);
+		std::cout << "TU jeszcze jest ok" << std::endl;
+		enemies.remove(enemy);
+		delete enemy;
+	}
 	for(std::list<Enemy*>::iterator it = enemies.begin();it != enemies.end();it++)
+		(*it)->move();
+	for(std::list<Turret*>::iterator it = turrets.begin();it != turrets.end();it++)
 		(*it)->move();
 }
 

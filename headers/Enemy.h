@@ -22,10 +22,10 @@ public:
 		int getHp () const;
 		sf::Shape* get_shape() override;
 		~Enemy ();
+		int hp;
 private:
 		std::list<sf::Shape*>::iterator index;
 		float speed;
-		int hp;
 };
 
 #endif //ENEMY_H
