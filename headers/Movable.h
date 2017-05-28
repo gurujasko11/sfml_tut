@@ -5,7 +5,7 @@
 
 class Movable {
 public:
-		virtual bool move() = 0;
+		virtual void move() = 0;
 		virtual sf::Shape* get_shape() = 0;
 		virtual ~Movable();
 };

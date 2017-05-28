@@ -1,18 +1,19 @@
 #include <iostream>
 #include "../headers/Game.h"
-#include "../headers/Turret.h"
 #include "../headers/LinearPushStrategy.h"
+#include "../headers/GlobalVariables.h"
 
 Game::Game(Background& background, sf::RenderWindow* window)
 :background(background),
  window(window) {
-	objectStorage = new ObjectStorage(this);
 	userInterface = new UserInterface(window);
 	pushStrategy = new LinearPushStrategy(this);
 }
 
 void Game::play()
 {
+	if(!can_tick())
+		return;
 	window->clear();
 	background.draw_bg(*window);
 	userInterface->show();
@@ -23,36 +24,40 @@ void Game::play()
 
 	move_movables();
 	draw_movables();
+	time_of_last_tick = std::chrono::system_clock::now();
 }
 
 void Game::move_movables() {
-	for(std::list<Movable*>::iterator it = movables.begin();it != movables.end();)
-	{
-		Movable* movable = *it;
-		if((*it)->move()) {
-			movables.erase(it++);
-			delete movable;
-		}
-		else
-			it++;
-	}
+	for(std::list<Turret*>::iterator it = turrets.begin();it != turrets.end();it++)
+		(*it)->move();
+	for(std::list<Bullet*>::iterator it = bullets.begin();it != bullets.end();it++)
+		(*it)->move();
+	for(std::list<Enemy*>::iterator it = enemies.begin();it != enemies.end();it++)
+		(*it)->move();
 }
 
 void Game::draw_movables() {
-	for(std::list<Movable*>::iterator it = movables.begin();it != movables.end(); it++)
-	{
+	for(std::list<Turret*>::iterator it = turrets.begin();it != turrets.end(); it++)
 		window -> draw(*(*it)->get_shape());
-	}
+	for(std::list<Bullet*>::iterator it = bullets.begin();it != bullets.end(); it++)
+		window -> draw(*(*it)->get_shape());
+	for(std::list<Enemy*>::iterator it = enemies.begin();it != enemies.end(); it++)
+		window -> draw(*(*it)->get_shape());
 }
 
 void Game::add_enemy(Enemy* enemy) {
-	objectStorage->add_enemy(enemy);
+	enemies.push_back(enemy);
 }
 void Game::add_turret(Turret* turret) {
-	turret->objectStorage = objectStorage;
-	objectStorage->add_turrets(turret);
+	turret->game = this;
+	turrets.push_back(turret);
 }
 
-void Game::add_movable(Movable* movable) {
-	movables.push_back(movable);
+void Game::add_bullet(Bullet* bullet) {
+	bullets.push_back(bullet);
+}
+
+bool Game::can_tick() {
+//	std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::seconds(1)/fps).count() << std::endl;
+	return (std::chrono::system_clock::now() - time_of_last_tick)*fps >= (std::chrono::seconds(1));
 }

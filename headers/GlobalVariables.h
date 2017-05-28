@@ -1,0 +1,7 @@
+#ifndef SFML_TUT_GLOBALVARIABLES_H
+#define SFML_TUT_GLOBALVARIABLES_H
+
+static int fps = 100;
+
+
+#endif //SFML_TUT_GLOBALVARIABLES_H

@@ -1,13 +1,13 @@
 #include <iostream>
 #include "../headers/Bullet.h"
-#include "../headers/ObjectStorage.h"
-bool Bullet::move() {
+#include "../headers/GlobalVariables.h"
+void Bullet::move() {
 	if(enemy == NULL)
-		return true;
+		return;
 	move_shape_to_target();
-	if(enemy->get_distance_from(shape) < 1)
-		return true;
-	return false;
+//	if(enemy->get_distance_from(shape) < 1)
+//		return true;TODO
+//	return false;
 }
 
 void Bullet::move_shape_to_target()
@@ -27,15 +27,14 @@ void Bullet::move_shape_to_target()
 	shape->move(x*shift.x,x*shift.y);
 }
 
-Bullet::Bullet(sf::Shape* shape, Enemy* enemy, ObjectStorage* objectStorage, float power = 25, float speed = 1) :
+Bullet::Bullet(sf::Shape* shape, Enemy* enemy, float power = 25, float speed = 5) :
 				shape(shape),
-				objectStorage(objectStorage),
 				enemy(enemy),
 				power(power),
 				speed(speed) {};
 
 Bullet::~Bullet() {
-	objectStorage -> remove_bullet(this);
+//	game->remove_bullet(this);//TODO
 }
 
 sf::Shape* Bullet::get_shape() {
