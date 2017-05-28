@@ -1,43 +1,15 @@
 #include "../headers/WavyPushStrategy.h"
+#include "helpers.cpp"
 
 WavyPushStrategy::WavyPushStrategy(Game* game, std::list<Enemy*>* enemies)
         : PushStrategy(game, enemies)
 {
     time_of_last_push = std::chrono::system_clock::now();
 
-    sf::Texture* nmTexture = (new sf::Texture());
-    nmTexture->loadFromFile("res/nmy1.png");
-
-    sf::CircleShape* nm1 = (new sf::CircleShape(16));
-    sf::CircleShape* nm2 = (new sf::CircleShape(16));
-    sf::CircleShape* nm3 = (new sf::CircleShape(16));
-    sf::CircleShape* nm4 = (new sf::CircleShape(16));
-    sf::CircleShape* nm5 = (new sf::CircleShape(16));
-    sf::CircleShape* nm6 = (new sf::CircleShape(16));
-    sf::CircleShape* nm7 = (new sf::CircleShape(16));
-    sf::CircleShape* nm8 = (new sf::CircleShape(16));
-    sf::CircleShape* nm9 = (new sf::CircleShape(16));
-
-    nm1->setTexture(nmTexture);
-    nm2->setTexture(nmTexture);
-    nm3->setTexture(nmTexture);
-    nm4->setTexture(nmTexture);
-    nm5->setTexture(nmTexture);
-    nm6->setTexture(nmTexture);
-    nm7->setTexture(nmTexture);
-    nm8->setTexture(nmTexture);
-    nm9->setTexture(nmTexture);
-
     float speed = 2;
-    enemies->push_back(new Enemy(nm1, speed, 100));
-    enemies->push_back(new Enemy(nm2, speed, 100));
-    enemies->push_back(new Enemy(nm3, speed, 100));
-    enemies->push_back(new Enemy(nm4, speed, 100));
-    enemies->push_back(new Enemy(nm5, speed, 100));
-    enemies->push_back(new Enemy(nm6, speed, 100));
-    enemies->push_back(new Enemy(nm7, speed, 100));
-    enemies->push_back(new Enemy(nm8, speed, 100));
-    enemies->push_back(new Enemy(nm9, speed, 100));
+    for (int i = 0; i < 9; ++i) {
+        enemies->push_back( new_enemy(speed, 100) );
+    }
     std::cout << "Utworzono push strategy" << std::endl;
 }
 
