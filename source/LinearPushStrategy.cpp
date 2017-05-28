@@ -5,24 +5,10 @@ LinearPushStrategy::LinearPushStrategy(Game* game, std::list<Enemy*>* enemies)
 {
 	time_of_last_push = std::chrono::system_clock::now();
 
-	sf::Texture* nmTexture = (new sf::Texture());
-	nmTexture->loadFromFile("res/nmy1.png");
-
-	sf::CircleShape* nm1 = (new sf::CircleShape(16));
-	sf::CircleShape* nm2 = (new sf::CircleShape(16));
-	sf::CircleShape* nm3 = (new sf::CircleShape(16));
-	sf::CircleShape* nm4 = (new sf::CircleShape(16));
-
-	nm1->setTexture(nmTexture);
-	nm2->setTexture(nmTexture);
-	nm3->setTexture(nmTexture);
-	nm4->setTexture(nmTexture);
-
-	float speed = 0.2;
-	enemies->push_back(new Enemy(nm1, speed, 100));
-	enemies->push_back(new Enemy(nm2, speed, 100));
-	enemies->push_back(new Enemy(nm3, speed, 100));
-	enemies->push_back(new Enemy(nm4, speed, 100));
+	float speed = 2;
+	for (int i = 0; i < 9; ++i) {
+		enemies->push_back( new_enemy(speed, 100) );
+	}
 	std::cout << "Utworzono push strategy" << std::endl;
 }
 
@@ -47,3 +33,8 @@ void LinearPushStrategy::push()
 		}
 	}
 }
+
+void LinearPushStrategy::set_step(int step){
+	this->step = step;
+}
+

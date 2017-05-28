@@ -1,13 +1,14 @@
 #include <iostream>
 #include "../headers/Game.h"
 #include "../headers/LinearPushStrategy.h"
+#include "../headers/WavyPushStrategy.h"
 #include "../headers/GlobalVariables.h"
 
 Game::Game(Background& background, sf::RenderWindow* window)
 :background(background),
  window(window) {
 	userInterface = new UserInterface(window);
-	pushStrategy = new LinearPushStrategy(this);
+	pushStrategy = new WavyPushStrategy(this);
 }
 
 void Game::play()
