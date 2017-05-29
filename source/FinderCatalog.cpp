@@ -27,11 +27,11 @@ bool FinderCatalog::get_stronger (Enemy *e1, Enemy *e2) {
 }
 
 bool FinderCatalog::get_further (Turret *turret, Enemy *e1, Enemy *e2) {
-	return e1->get_distance_from(&(turret->shape)) > e2->get_distance_from(&(turret->shape));
+	return e1->get_distance_from(turret->shape) > e2->get_distance_from(turret->shape);
 };
 
 bool FinderCatalog::get_closer (Turret *turret, Enemy *e1, Enemy *e2) {
-	return e1->get_distance_from(&(turret->shape)) < e2->get_distance_from(&(turret->shape));
+	return e1->get_distance_from(turret->shape) < e2->get_distance_from(turret->shape);
 }
 
 Enemy *FinderCatalog::closest_enemy_finder (Turret *turret) {

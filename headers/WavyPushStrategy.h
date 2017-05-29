@@ -13,7 +13,7 @@
 
 class WavyPushStrategy : public PushStrategy{
 public:
-    WavyPushStrategy(Game* game, std::list<Enemy*>* enemies = new std::list<Enemy*>() );
+    WavyPushStrategy(Level* level, std::list<Enemy*>* enemies = new std::list<Enemy*>() );
     bool can_push();
     void set_step(int step);
     void push() override;

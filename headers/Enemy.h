@@ -25,6 +25,7 @@ public:
 		~Enemy ();
 		float base_hp;
 		float hp;
+		void hit_by_bullet(int damage);
 private:
 		std::list<sf::Shape*>::iterator index;
 		float speed;

@@ -1,8 +1,6 @@
 #include <cmath>
 #include <SFML/Graphics.hpp>
-#include <iostream>
 #include "../headers/Enemy.h"
-#include "../headers/Background.h"
 #include "../headers/GlobalVariables.h"
 
 void Enemy::next_target() {
@@ -42,6 +40,10 @@ void Enemy::move()
 	shape->move(x*shift.x,x*shift.y);
 	hp_shape->setSize(sf::Vector2f(cell_size*(hp/base_hp),4));
 	hp_shape->move(x*shift.x,x*shift.y);
+}
+
+void Enemy::hit_by_bullet(int damage) {
+	hp -= damage;
 }
 
 //bool Enemy::is_on_target ()

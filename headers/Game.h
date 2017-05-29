@@ -1,48 +1,20 @@
-#ifndef GAME_H
-#define GAME_H
+#ifndef SFML_TUT_GAMEH
+#define SFML_TUT_GAMEH
 
-#include <SFML/Graphics/RenderWindow.hpp>
-#include <list>
-#include <set>
-#include "Enemy.h"
-#include "Background.h"
+#include <chrono>
 #include "UserInterface.h"
-#include "Bullet.h"
-#include "Turret.h"
+#include "Stage.h"
 
-class PushStrategy;
-
-
-class Game
-{
-private:
-		UserInterface* userInterface;
-		PushStrategy* pushStrategy;
-		std::chrono::time_point<std::chrono::system_clock> time_of_last_tick = std::chrono::system_clock::now();
+class Game {
 public:
-//		const std::chrono::duration<double, std::milli> second = std::chrono::duration<double, std::milli>(1000.0);
-		void play();
-//private:
-//		all fields are public cos there no seters provided
-//		YET
-//		TODO
-		bool can_tick();
-		Game(Background& background, sf::RenderWindow* window);
+		UserInterface* userInterface;
 		sf::RenderWindow* window;
-		Background background;
+		std::chrono::time_point<std::chrono::system_clock> time_of_last_tick = std::chrono::system_clock::now();
+		Stage* stage;
 
-		std::list<Bullet*> bullets;
-		std::list<Enemy*> enemies;
-		std::list<Turret*> turrets;
-		std::set<Enemy*> enemies_to_delete;
-		void move_movables();
-		void draw_movables();
+		Game(sf::RenderWindow* window);
+		void play();
+		bool can_tick();
 
-		void add_enemy(Enemy* enemy);
-		void add_turret(Turret* turret);
-		void add_bullet(Bullet* bullet);
-
-		void handle_player_input();
-		void draw_userInterface();
 };
-#endif //GAME_H
+#endif //SFML_TUT_GAMEH

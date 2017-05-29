@@ -7,9 +7,10 @@
 #include <iostream>
 #include <chrono>
 
+
 class LinearPushStrategy : public PushStrategy{
 public:
-	LinearPushStrategy(Game* game, std::list<Enemy*>* enemies = new std::list<Enemy*>() );
+	LinearPushStrategy(Level* level, std::list<Enemy*>* enemies = new std::list<Enemy*>() );
 	bool can_push();
 	void set_step(int step);
 	void push() override;

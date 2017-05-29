@@ -1,8 +1,9 @@
 #include "../headers/WavyPushStrategy.h"
+#include "../headers/Level.h"
 #include "helpers.cpp"
 
-WavyPushStrategy::WavyPushStrategy(Game* game, std::list<Enemy*>* enemies)
-        : PushStrategy(game, enemies)
+WavyPushStrategy::WavyPushStrategy(Level* level, std::list<Enemy*>* enemies)
+        : PushStrategy(level, enemies)
 {
     time_of_last_push = std::chrono::system_clock::now();
 
@@ -27,7 +28,7 @@ void WavyPushStrategy::push()
         if (can_push())
         {
             std::cout << "can push" << std::endl;
-            game->add_enemy(passive_enemies->back());
+            level->add_enemy(passive_enemies->back());
             std::cout << "enemy added" << std::endl;
             passive_enemies->pop_back();
             std::cout << "enemy pop_baked" << std::endl;

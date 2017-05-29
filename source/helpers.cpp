@@ -1,4 +1,6 @@
 
+#include "../headers/Enemy.h"
+
 Enemy* new_enemy(float speed = 2, int hp = 100){
     sf::Texture* nmTexture = (new sf::Texture());
     nmTexture->loadFromFile("res/nmy1.png");

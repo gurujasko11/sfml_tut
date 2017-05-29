@@ -8,9 +8,11 @@
 class Background
 {
 public:
-		Background(Cell matrix[16][16]);
+		Background(Cell* matrix[16][16]);
+
+		Background ();
+
 		void draw_bg(sf::RenderWindow& window);
-private:
-		Cell BG_matrix[16][16];
+		Cell* BG_matrix[16][16];
 };
 #endif //BACKGROUND_H
