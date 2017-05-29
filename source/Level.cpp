@@ -2,8 +2,10 @@
 #include "../headers/Level.h"
 #include "../headers/WavyPushStrategy.h"
 
-Level::Level() {
+Level::Level(sf::RenderWindow* window) : window(window){
 	pushStrategy = new WavyPushStrategy(this);
+	enemies.back();
+	std::cout<<"konstruktor level"<<std::endl;
 }
 void Level::add_enemy(Enemy* enemy) {
 	enemies.push_back(enemy);
@@ -40,10 +42,23 @@ void Level::draw_bullets() {
 		window -> draw(*(*it)->get_shape());
 }
 void Level::draw_enemies() {
+//	for(std::list<Enemy*>::iterator it = enemies.begin();it != enemies.end(); it++){
+//
+//		std::cout<<"XXXX"<< enemies.size()<<std::endl;
+//		if((*it)->get_shape() == NULL)
+//			std::cout<<"NULL"<<std::endl;
+//		std::cout<<"QQQQQQQQQQQQQQQQQQ"<<std::endl;
+//		window -> draw(*((*it)->get_shape()));
+//		std::cout<<"po draw single enemy"<<std::endl;
+//		window -> draw(*(*it)->hp_shape);
+//		std::cout<<"po draw single enemy hp"<<std::endl;
+//	}
 	for(std::list<Enemy*>::iterator it = enemies.begin();it != enemies.end(); it++){
-		window -> draw(*(*it)->get_shape());
+		std::cout << (*it)->shape->getPosition().x << std::endl;
+		std::cout << (*it)->shape->getPosition().y << std::endl;
+		window -> draw(*(*it)->shape);
 		window -> draw(*(*it)->hp_shape);
-	}
+		}
 }
 
 void Level::clean_enemies() {

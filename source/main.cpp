@@ -6,13 +6,20 @@
 #include "../headers/BG_Builder.h"
 #include "../headers/Turret.h"
 #include "../headers/Game.h"
+#include "../headers/Kieszonka.h"
 
 std::list<sf::Shape*> Enemy::targets = std::list<sf::Shape*>();
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(832, 512), "DEFENCE TOWER!", sf::Style::Close);
 	Game game(&window);
-	game.stage->levels.push_back(new Level());
+
+//	game.stage->add_turret(get_turret1(),3,3);
+//	game.stage->add_turret(get_turret1(),4,3);
+//	game.stage->add_turret(get_turret1(),5,3);
+//NIE DZIALA DODAWANIE TURRETOW
+	game.stage->levels.push_back(new Level(&window));
+	game.stage->level = game.stage->levels.begin();
 	std::cout<<"INICJACJA"<<std::endl;
 
 

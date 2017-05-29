@@ -13,7 +13,7 @@ public:
 		PushStrategy* pushStrategy;
 		sf::RenderWindow* window;
 
-		Level();
+		Level(sf::RenderWindow* window);
 		void add_enemy(Enemy* enemy);
 		void add_bullet(Bullet* bullet);
 

@@ -1,3 +1,4 @@
+#include <iostream>
 #include "../headers/Stage.h"
 #include "../headers/Kieszonka.h"
 bool Stage::add_turret(Turret* turret, int x, int y) {
@@ -24,12 +25,18 @@ void Stage::draw_background() {
 
 void Stage::move_level() {
 	(*level)->move_bullets();
+	std::cout<<"po move bullets"<<std::endl;
 	(*level)->clean_enemies();
+	std::cout<<"po clean enemies"<<std::endl;
 	(*level)->move_enemies();
+	std::cout<<"po move enemies"<<std::endl;
 }
 void Stage::draw_level() {
+	std::cout<<"przed draw bullets"<<std::endl;
 	(*level)->draw_bullets();
+	std::cout<<"po draw bullets"<<std::endl;
 	(*level)->draw_enemies();
+	std::cout<<"po draw enemies"<<std::endl;
 }
 
 bool Stage::is_level_active() {
@@ -46,4 +53,5 @@ Level* Stage::get_level() {
 
 Stage::Stage(sf::RenderWindow* window) :window(window){
 	background = get_background1();
+	level = levels.begin();
 }
