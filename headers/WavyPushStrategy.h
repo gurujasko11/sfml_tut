@@ -19,7 +19,7 @@ public:
     void push() override;
 
 private:
-    int wave_step = 20;
+    int wave_step = 10;
     int push_step = 5;
     std::chrono::milliseconds time_beetwen_push = std::chrono::milliseconds(10000 * push_step)/fps;
     std::chrono::milliseconds time_beetwen_waves = std::chrono::milliseconds(10000 * wave_step)/fps;

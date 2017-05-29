@@ -34,7 +34,7 @@ void Game::move_movables() {
 		if((*it)->enemy->get_distance_from((*it)->shape) < 2) {
 			(*it)->enemy->hp -= (*it)->power;
 			if((*it)->enemy->getHp() < 0){
-				enemies_to_delete.push_back((*it)->enemy);
+				enemies_to_delete.insert((*it)->enemy);
 				std::cout << "DODAL ENEMY DO LLISTY" << std::endl;
 			}
 			Bullet* bullet_to_delete = *it;
@@ -46,7 +46,7 @@ void Game::move_movables() {
 			it++;
 	}
 	//its time for cleanup
-	for(std::list<Enemy*>::iterator it = enemies_to_delete.begin();it != enemies_to_delete.end();) {
+	for(std::set<Enemy*>::iterator it = enemies_to_delete.begin();it != enemies_to_delete.end();) {
 		Enemy* enemy = *it;
 		std::cout << "PRZED REMOVE IF" << std::endl;
 		bullets.remove_if([enemy] (Bullet* b) -> bool {return b->enemy == enemy;});
@@ -68,8 +68,10 @@ void Game::draw_movables() {
 		window -> draw(*(*it)->get_shape());
 	for(std::list<Bullet*>::iterator it = bullets.begin();it != bullets.end(); it++)
 		window -> draw(*(*it)->get_shape());
-	for(std::list<Enemy*>::iterator it = enemies.begin();it != enemies.end(); it++)
+	for(std::list<Enemy*>::iterator it = enemies.begin();it != enemies.end(); it++){
 		window -> draw(*(*it)->get_shape());
+		window -> draw(*(*it)->hp_shape);
+	}
 }
 
 void Game::add_enemy(Enemy* enemy) {

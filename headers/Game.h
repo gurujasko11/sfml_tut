@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <list>
+#include <set>
 #include "Enemy.h"
 #include "Background.h"
 #include "UserInterface.h"
@@ -33,7 +34,7 @@ public:
 		std::list<Bullet*> bullets;
 		std::list<Enemy*> enemies;
 		std::list<Turret*> turrets;
-		std::list<Enemy*> enemies_to_delete;
+		std::set<Enemy*> enemies_to_delete;
 		void move_movables();
 		void draw_movables();
 

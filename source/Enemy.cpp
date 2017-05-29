@@ -3,20 +3,26 @@
 #include <iostream>
 #include "../headers/Enemy.h"
 #include "../headers/Background.h"
+#include "../headers/GlobalVariables.h"
 
 void Enemy::next_target() {
 	index++;
 	if(index == targets.end()) {
 		index = targets.begin();
 		this->shape->setPosition(targets.front()->getPosition());
+		this->hp_shape->setPosition(targets.front()->getPosition());
 	}
 }
 
 Enemy::Enemy (sf::Shape* shape, float& speed, int hp = 100)
 				: shape(shape),
 				  speed(speed),
-					hp(hp){
+					hp(hp),
+					base_hp(hp){
 	index = targets.begin();
+	hp_shape = new sf::RectangleShape(shape->getPosition());
+	hp_shape->setFillColor(sf::Color::Yellow);
+	hp_shape->setSize(sf::Vector2f(cell_size,4));
 }
 
 void Enemy::move()
@@ -34,6 +40,8 @@ void Enemy::move()
 	float x = (speed * speed) / ((shift.x * shift.x) + (shift.y * shift.y));
 	x = sqrt(x);
 	shape->move(x*shift.x,x*shift.y);
+	hp_shape->setSize(sf::Vector2f(cell_size*(hp/base_hp),4));
+	hp_shape->move(x*shift.x,x*shift.y);
 }
 
 //bool Enemy::is_on_target ()

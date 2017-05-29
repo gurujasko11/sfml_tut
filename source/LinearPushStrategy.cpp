@@ -1,4 +1,5 @@
 #include "../headers/LinearPushStrategy.h"
+//#include "helpers.cpp"
 
 LinearPushStrategy::LinearPushStrategy(Game* game, std::list<Enemy*>* enemies)
 				: PushStrategy(game, enemies)
@@ -6,9 +7,9 @@ LinearPushStrategy::LinearPushStrategy(Game* game, std::list<Enemy*>* enemies)
 	time_of_last_push = std::chrono::system_clock::now();
 
 	float speed = 2;
-	for (int i = 0; i < 9; ++i) {
-		enemies->push_back( new_enemy(speed, 100) );
-	}
+//	for (int i = 0; i < 9; ++i) {
+//		enemies->push_back( new_enemy(speed, 100) );
+//	}
 	std::cout << "Utworzono push strategy" << std::endl;
 }
 

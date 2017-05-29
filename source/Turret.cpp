@@ -30,7 +30,7 @@ void Turret::shoot () {
 	sf::CircleShape* bullet_shape = new sf::CircleShape(8);
 	bullet_shape -> setTexture(texture);
 	bullet_shape -> setPosition(shape.getPosition());
-	game -> add_bullet(new Bullet(bullet_shape,find_target(), 25, 5));
+	game -> add_bullet(new Bullet(bullet_shape,find_target(), 24, 5));
 	time_of_last_shot = std::chrono::system_clock::now();
 }
 
