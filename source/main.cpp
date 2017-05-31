@@ -1,9 +1,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include <cmath>
 #include <list>
 #include "../headers/Enemy.h"
-#include "../headers/BG_Builder.h"
 #include "../headers/Turret.h"
 #include "../headers/Game.h"
 #include "../headers/Kieszonka.h"
@@ -14,10 +12,6 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(832, 512), "DEFENCE TOWER!", sf::Style::Close);
 	Game game(&window);
 
-//	game.stage->add_turret(get_turret1(),3,3);
-//	game.stage->add_turret(get_turret1(),4,3);
-//	game.stage->add_turret(get_turret1(),5,3);
-//NIE DZIALA DODAWANIE TURRETOW
 	game.stage->levels.push_back(new Level(&window));
 	game.stage->level = game.stage->levels.begin();
 	std::cout<<"INICJACJA"<<std::endl;
@@ -39,8 +33,8 @@ int main()
 //						printf("%c", event.text.unicode);
 					break;
 				case sf::Event::MouseButtonPressed:
-				std::cout<<Enemy::targets.size() << std::endl;
 				std::cout<< "Mouse clicked: " << sf::Mouse::getPosition().x <<", " << sf::Mouse::getPosition().y << std::endl;
+					game.stage->add_turret(get_turret1(),sf::Mouse::getPosition(window).x / cell_size,sf::Mouse::getPosition(window).y / cell_size );
 					break;
 				case sf::Event::MouseButtonReleased:
 					std::cout<< "Mouse released: " << sf::Mouse::getPosition().x <<", " << sf::Mouse::getPosition().y << std::endl;

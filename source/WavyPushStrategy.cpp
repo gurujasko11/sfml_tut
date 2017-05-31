@@ -8,7 +8,7 @@ WavyPushStrategy::WavyPushStrategy(Level* level, std::list<Enemy*>* enemies)
     time_of_last_push = std::chrono::system_clock::now();
 
     float speed = 2;
-    for (int i = 0; i < 15; ++i) {
+    for (int i = 0; i < 150; ++i) {
         enemies->push_back( new_enemy(speed, 100) );
     }
     std::cout << "Utworzono push strategy" << std::endl;

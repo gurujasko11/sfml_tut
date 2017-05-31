@@ -37,6 +37,7 @@ void Turret::shoot () {
 std::list<Enemy*> Turret::find_enemies_in_range() {
 	std::list<Enemy*> result;
 	for(std::list<Enemy*>::iterator i=level->enemies.begin(); i != level->enemies.end();i++) {
+	std::cout<<"w find enemies in range"<<std::endl;
 		if((*i)->get_distance_from(shape) < range)
 			result.push_back(*i);
 	}

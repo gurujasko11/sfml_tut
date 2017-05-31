@@ -20,6 +20,7 @@ void Game::play() {
 		stage->move_level();
 
 		stage->draw_level();
+
 		std::cout<<"po levelu"<<std::endl;
 		stage->handle_turrets();
 	}

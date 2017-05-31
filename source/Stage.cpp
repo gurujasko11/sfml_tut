@@ -11,8 +11,12 @@ bool Stage::add_turret(Turret* turret, int x, int y) {
 }
 
 void Stage::handle_turrets() {
-	for(std::list<Turret*>::iterator it = turrets.begin();it != turrets.end();it++)
+	for(std::list<Turret*>::iterator it = turrets.begin();it != turrets.end();it++) {
+		(*it)->level = *(this->level);//TODO trzeba to gdzies ustawiac
 		(*it)->move();
+	}
+
+	std::cout << "PO HANDLE TURRETS" << std::endl;
 }
 void Stage::draw_turrets() {
 	for(std::list<Turret*>::iterator it = turrets.begin();it != turrets.end(); it++)
