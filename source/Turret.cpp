@@ -11,9 +11,10 @@ Turret::Turret()
 	color = Color::NONE;
 }
 
-Turret::Turret(Cell_type cell_type, sf::RectangleShape* shape, int range, Color color)
+Turret::Turret(Cell_type cell_type, sf::RectangleShape* shape, int range, int damage, Color color)
 				: Cell(cell_type, shape),
 				  range(range),
+                  damage(damage),
 				  color(color)
 {
 	find_target = std::bind(&FinderCatalog::closest_enemy_finder, this);
@@ -32,7 +33,7 @@ void Turret::shoot () {
 	sf::CircleShape* bullet_shape = new sf::CircleShape(8);
 	bullet_shape -> setTexture(texture);
 	bullet_shape -> setPosition(shape->getPosition());
-	level -> add_bullet(new Bullet(bullet_shape,find_target(), 24, 5));
+	level -> add_bullet(new Bullet(bullet_shape,find_target(), this->damage, 5, this->color));
 	time_of_last_shot = std::chrono::system_clock::now();
 }
 
