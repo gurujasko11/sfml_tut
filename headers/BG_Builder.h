@@ -11,7 +11,7 @@ public:
 		BG_Builder();
 		BG_Builder(std::list<std::pair<int, int>>& path);
 
-		Background build(sf::Texture& rdTexture, sf::Texture& bgTexture, sf::Texture& fnTexture);//arguments are fucked up but without them there is bug I cant handle
+		Background build();
 private:
 		std::list<std::pair<int,int>> path;
 		int cell_size = 32;

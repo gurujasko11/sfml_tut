@@ -1,8 +1,10 @@
+#include <iostream>
 #include "../headers/FinderCatalog.h"
 
 
 Enemy* FinderCatalog::template_finder(Turret* turret, std::function<bool(Enemy*,Enemy*)> comparator) {
 	Enemy* result = NULL;
+	std::cout << "przed find enemies in range" << std::endl;
 	std::list<Enemy*> enemies = turret->find_enemies_in_range();
 	std::list<Enemy*>::iterator it = enemies.begin();
 	while(it != enemies.end())
@@ -27,11 +29,11 @@ bool FinderCatalog::get_stronger (Enemy *e1, Enemy *e2) {
 }
 
 bool FinderCatalog::get_further (Turret *turret, Enemy *e1, Enemy *e2) {
-	return e1->get_distance_from(&(turret->shape)) > e2->get_distance_from(&(turret->shape));
+	return e1->get_distance_from(turret->shape) > e2->get_distance_from(turret->shape);
 };
 
 bool FinderCatalog::get_closer (Turret *turret, Enemy *e1, Enemy *e2) {
-	return e1->get_distance_from(&(turret->shape)) < e2->get_distance_from(&(turret->shape));
+	return e1->get_distance_from(turret->shape) < e2->get_distance_from(turret->shape);
 }
 
 Enemy *FinderCatalog::closest_enemy_finder (Turret *turret) {

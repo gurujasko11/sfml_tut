@@ -1,14 +1,16 @@
 #include "../headers/LinearPushStrategy.h"
+#include "../headers/Level.h"
+//#include "helpers.cpp"
 
-LinearPushStrategy::LinearPushStrategy(Game* game, std::list<Enemy*>* enemies)
-				: PushStrategy(game, enemies)
+LinearPushStrategy::LinearPushStrategy(Level* level, std::list<Enemy*>* enemies)
+				: PushStrategy(level, enemies)
 {
 	time_of_last_push = std::chrono::system_clock::now();
 
 	float speed = 2;
-	for (int i = 0; i < 9; ++i) {
-		enemies->push_back( new_enemy(speed, 100) );
-	}
+//	for (int i = 0; i < 9; ++i) {
+//		enemies->push_back( new_enemy(speed, 100) );
+//	}
 	std::cout << "Utworzono push strategy" << std::endl;
 }
 
@@ -24,7 +26,7 @@ void LinearPushStrategy::push()
 		if (can_push())
 		{
 			std::cout << "can push" << std::endl;
-			game->add_enemy(passive_enemies->back());
+			level->add_enemy(passive_enemies->back());
 			std::cout << "enemy added" << std::endl;
 			passive_enemies->pop_back();
 			std::cout << "enemy pop_baked" << std::endl;

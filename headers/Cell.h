@@ -13,9 +13,9 @@ public:
 				TURRET
 		} cell_type;
 
-		sf::RectangleShape shape;
+		sf::RectangleShape* shape;
 
-		Cell(Cell_type cell_type, sf::RectangleShape& shape);
+		Cell(Cell_type cell_type, sf::RectangleShape* shape);
 		Cell();
 };
 #endif //CELL_H

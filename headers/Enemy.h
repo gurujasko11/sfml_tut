@@ -17,12 +17,15 @@ public:
 
 		static std::list<sf::Shape*> targets;
 		sf::Shape* shape;
+		sf::RectangleShape* hp_shape;
 
 		float getSpeed () const;
 		int getHp () const;
 		sf::Shape* get_shape() override;
 		~Enemy ();
-		int hp;
+		float base_hp;
+		float hp;
+		void hit_by_bullet(int damage);
 private:
 		std::list<sf::Shape*>::iterator index;
 		float speed;
