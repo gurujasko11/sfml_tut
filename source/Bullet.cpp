@@ -45,8 +45,9 @@ sf::Shape* Bullet::get_shape() {
 
 void Bullet::hit(){
         int damage = this->power;
-		int damage = more_damaged() ? damage*2 : less_damaged() ? damage/2 : damage;
+		damage = more_damaged() ? damage*2 : less_damaged() ? damage/2 : damage;
 		enemy->hit_by_bullet(damage);
+		score->increase(damage);
 }
 
 bool Bullet::more_damaged(){

@@ -12,6 +12,7 @@ class UserInterface {
 private:
 		sf::RenderWindow* window;
 		sf::RectangleShape* UI_Background;
+		sf::Text* score_text;
 public:
 		Game* game;
 		sf::RectangleShape* turret1;
@@ -23,6 +24,7 @@ public:
 
 		std::function<Turret*()> turret_builder;
 		UserInterface(sf::RenderWindow* window, Game* game);
+        void update_score_text();
 		void show();
 		void handle_player_input(int x, int y);
 
