@@ -5,7 +5,7 @@
 Level::Level(sf::RenderWindow* window) : window(window){
 	pushStrategy = new WavyPushStrategy(this);
 	enemies.back();
-	std::cout<<"konstruktor level"<<std::endl;
+//	std::cout<<"konstruktor level"<<std::endl;
 }
 void Level::add_enemy(Enemy* enemy) {
 	enemies.push_back(enemy);
@@ -21,12 +21,12 @@ void Level::move_bullets() {
 			(*it)->hit();
 			if ((*it)->enemy->getHp() < 0) {
 				enemies_to_delete.insert((*it)->enemy);
-				std::cout << "DODAL ENEMY DO LLISTY" << std::endl;
+//				std::cout << "DODAL ENEMY DO LLISTY" << std::endl;
 			}
 			Bullet *bullet_to_delete = *it;
 			bullets.erase(it++);
 			delete bullet_to_delete;
-			std::cout << "DELETED BULLET" << std::endl;
+//			std::cout << "DELETED BULLET" << std::endl;
 		}
 		else
 			it++;
@@ -54,8 +54,8 @@ void Level::draw_enemies() {
 //		std::cout<<"po draw single enemy hp"<<std::endl;
 //	}
 	for(std::list<Enemy*>::iterator it = enemies.begin();it != enemies.end(); it++){
-		std::cout << (*it)->shape->getPosition().x << std::endl;
-		std::cout << (*it)->shape->getPosition().y << std::endl;
+//		std::cout << (*it)->shape->getPosition().x << std::endl;
+//		std::cout << (*it)->shape->getPosition().y << std::endl;
 		window -> draw(*(*it)->shape);
 		window -> draw(*(*it)->hp_shape);
 		}
@@ -64,13 +64,13 @@ void Level::draw_enemies() {
 void Level::clean_enemies() {
 	for(std::set<Enemy*>::iterator it = enemies_to_delete.begin();it != enemies_to_delete.end();) {
 		Enemy* enemy = *it;
-		std::cout << "PRZED REMOVE IF" << std::endl;
+//		std::cout << "PRZED REMOVE IF" << std::endl;
 		bullets.remove_if([enemy] (Bullet* b) -> bool {return b->enemy == enemy;});
-		std::cout << "po REMOVE IF" << std::endl;
+//		std::cout << "po REMOVE IF" << std::endl;
 		enemies_to_delete.erase(it++);
 		enemies.remove(enemy);
-		std::cout << "enemies erase" << std::endl;
+//		std::cout << "enemies erase" << std::endl;
 		delete enemy;
-		std::cout << "po delete enemy" << std::endl;
+//		std::cout << "po delete enemy" << std::endl;
 	}
 }

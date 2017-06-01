@@ -16,7 +16,7 @@ void Stage::handle_turrets() {
 		(*it)->move();
 	}
 
-	std::cout << "PO HANDLE TURRETS" << std::endl;
+//	std::cout << "PO HANDLE TURRETS" << std::endl;
 }
 void Stage::draw_turrets() {
 	for(std::list<Turret*>::iterator it = turrets.begin();it != turrets.end(); it++)
@@ -29,18 +29,18 @@ void Stage::draw_background() {
 
 void Stage::move_level() {
 	(*level)->move_bullets();
-	std::cout<<"po move bullets"<<std::endl;
+//	std::cout<<"po move bullets"<<std::endl;
 	(*level)->clean_enemies();
-	std::cout<<"po clean enemies"<<std::endl;
+//	std::cout<<"po clean enemies"<<std::endl;
 	(*level)->move_enemies();
-	std::cout<<"po move enemies"<<std::endl;
+//	std::cout<<"po move enemies"<<std::endl;
 }
 void Stage::draw_level() {
-	std::cout<<"przed draw bullets"<<std::endl;
+//	std::cout<<"przed draw bullets"<<std::endl;
 	(*level)->draw_bullets();
-	std::cout<<"po draw bullets"<<std::endl;
+//	std::cout<<"po draw bullets"<<std::endl;
 	(*level)->draw_enemies();
-	std::cout<<"po draw enemies"<<std::endl;
+//	std::cout<<"po draw enemies"<<std::endl;
 }
 
 bool Stage::is_level_active() {

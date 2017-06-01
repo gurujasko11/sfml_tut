@@ -70,7 +70,7 @@ void UserInterface::handle_player_input(int x, int y) {
 	}
 	if(x < turrets_ui_row_x && turret_builder != nullptr) {
 		turret_builder();
-		std::cout<<"wywolalem turret builder" << std::endl;
+//		std::cout<<"wywolalem turret builder" << std::endl;
 		game->stage->add_turret(turret_builder(),x / cell_size,y / cell_size);
 	}
 }

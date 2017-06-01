@@ -11,7 +11,7 @@ LinearPushStrategy::LinearPushStrategy(Level* level, std::list<Enemy*>* enemies)
 //	for (int i = 0; i < 9; ++i) {
 //		enemies->push_back( new_enemy(speed, 100) );
 //	}
-	std::cout << "Utworzono push strategy" << std::endl;
+//	std::cout << "Utworzono push strategy" << std::endl;
 }
 
 bool LinearPushStrategy::can_push() {
@@ -25,13 +25,13 @@ void LinearPushStrategy::push()
 	{
 		if (can_push())
 		{
-			std::cout << "can push" << std::endl;
+//			std::cout << "can push" << std::endl;
 			level->add_enemy(passive_enemies->back());
-			std::cout << "enemy added" << std::endl;
+//			std::cout << "enemy added" << std::endl;
 			passive_enemies->pop_back();
-			std::cout << "enemy pop_baked" << std::endl;
+//			std::cout << "enemy pop_baked" << std::endl;
 			time_of_last_push = std::chrono::system_clock::now();
-			std::cout << "time reset" << std::endl;
+//			std::cout << "time reset" << std::endl;
 		}
 	}
 }

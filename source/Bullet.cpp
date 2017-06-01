@@ -27,7 +27,7 @@ void Bullet::move_shape_to_target()
 	shape->move(x*shift.x,x*shift.y);
 }
 
-Bullet::Bullet(sf::Shape* shape, Enemy* enemy, float power = 25, float speed = 5, Color color) :
+Bullet::Bullet(sf::Shape* shape, Enemy* enemy, float power = 100, float speed = 5, Color color) :
 				shape(shape),
 				enemy(enemy),
 				power(power),
@@ -44,13 +44,13 @@ sf::Shape* Bullet::get_shape() {
 }
 
 void Bullet::hit(){
-    if(more_damaged()){
-        enemy->hit_by_bullet(this->power * 1.5);
-    }else if (less_damaged()){
-        enemy->hit_by_bullet(this->power * 0.5);
-    } else {
-        enemy->hit_by_bullet(this->power);
-    }
+		int damage = more_damaged() ? this->power * 2 : less_damaged() ? this->power / 2 : this -> power;
+		std::cout << "----------------------------" << std::endl;
+		std::cout << "Enemy hp: " << enemy->hp << std::endl;
+		std::cout << "Damage:   " << damage << std::endl;
+		enemy->hit_by_bullet(damage);
+		std::cout << "Enemy hp after: " << enemy->hp << std::endl;
+		std::cout << "----------------------------" << std::endl;
 }
 
 bool Bullet::more_damaged(){

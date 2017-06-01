@@ -14,7 +14,7 @@ int main()
 
 	game.stage->levels.push_back(new Level(&window));
 	game.stage->level = game.stage->levels.begin();
-	std::cout<<"INICJACJA"<<std::endl;
+//	std::cout<<"INICJACJA"<<std::endl;
 
 
 	while (window.isOpen())
@@ -29,22 +29,22 @@ int main()
 					break;
 				case sf::Event::TextEntered:
 					if(event.text.unicode < 128)
-						std::cout << (char)event.text.unicode << std::endl;
+//						std::cout << (char)event.text.unicode << std::endl;
 //						printf("%c", event.text.unicode);
 					break;
 				case sf::Event::MouseButtonPressed:
-				std::cout<< "Mouse clicked: " << sf::Mouse::getPosition().x <<", " << sf::Mouse::getPosition().y << std::endl;
+//				std::cout<< "Mouse clicked: " << sf::Mouse::getPosition().x <<", " << sf::Mouse::getPosition().y << std::endl;
 //					game.stage->add_turret(get_turret1(),sf::Mouse::getPosition(window).x / cell_size,sf::Mouse::getPosition(window).y / cell_size );
 					game.userInterface->handle_player_input(sf::Mouse::getPosition(window).x,sf::Mouse::getPosition(window).y);
 					break;
 				case sf::Event::MouseButtonReleased:
-					std::cout<< "Mouse released: " << sf::Mouse::getPosition().x <<", " << sf::Mouse::getPosition().y << std::endl;
+//					std::cout<< "Mouse released: " << sf::Mouse::getPosition().x <<", " << sf::Mouse::getPosition().y << std::endl;
 					break;
 			}
 		}
-		std::cout<<"Przed game.play()"<<std::endl;
+//		std::cout<<"Przed game.play()"<<std::endl;
 		game.play();
-		std::cout<<"Po game.play()"<<std::endl;
+//		std::cout<<"Po game.play()"<<std::endl;
 		window.display();
 	}
 

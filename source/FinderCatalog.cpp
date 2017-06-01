@@ -4,7 +4,7 @@
 
 Enemy* FinderCatalog::template_finder(Turret* turret, std::function<bool(Enemy*,Enemy*)> comparator) {
 	Enemy* result = NULL;
-	std::cout << "przed find enemies in range" << std::endl;
+//	std::cout << "przed find enemies in range" << std::endl;
 	std::list<Enemy*> enemies = turret->find_enemies_in_range();
 	std::list<Enemy*>::iterator it = enemies.begin();
 	while(it != enemies.end())
