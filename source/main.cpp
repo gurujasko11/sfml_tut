@@ -34,7 +34,8 @@ int main()
 					break;
 				case sf::Event::MouseButtonPressed:
 				std::cout<< "Mouse clicked: " << sf::Mouse::getPosition().x <<", " << sf::Mouse::getPosition().y << std::endl;
-					game.stage->add_turret(get_turret1(),sf::Mouse::getPosition(window).x / cell_size,sf::Mouse::getPosition(window).y / cell_size );
+//					game.stage->add_turret(get_turret1(),sf::Mouse::getPosition(window).x / cell_size,sf::Mouse::getPosition(window).y / cell_size );
+					game.userInterface->handle_player_input(sf::Mouse::getPosition(window).x,sf::Mouse::getPosition(window).y);
 					break;
 				case sf::Event::MouseButtonReleased:
 					std::cout<< "Mouse released: " << sf::Mouse::getPosition().x <<", " << sf::Mouse::getPosition().y << std::endl;
