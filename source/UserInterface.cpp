@@ -59,6 +59,13 @@ UserInterface::UserInterface(sf::RenderWindow* window, Game* game) : window(wind
 	turret4 = new sf::RectangleShape(sf::Vector2<float>(turrets_ui_cell_size,turrets_ui_cell_size));
 	turret4->setTexture(turret4_texture);
 	turret4->setPosition(sf::Vector2<float>(turrets_ui_row_x+(3*turrets_ui_cell_size),turrets_ui_row_y));
+
+    font->loadFromFile("res/arial.ttf");
+    score_text = new sf::Text();
+    score_text->setFont(*font);
+	score_text->setCharacterSize(24);
+    score_text->setString(*(score->get_string()));
+    score_text->setPosition(sf::Vector2f(512.0f, 0.0f));
 }
 
 void UserInterface::handle_player_input(int x, int y) {
@@ -108,6 +115,10 @@ bool UserInterface::is_upgrade_button_clicked(int x, int y) {
 	return x > upgrade_button->getPosition().x && x < upgrade_button->getPosition().x + upgrade_button->getSize().x
 	&& y > upgrade_button->getPosition().y && y < upgrade_button->getPosition().y + upgrade_button->getSize().y;
 }
+void UserInterface::update_score_text(){
+    score_text->setString(*(score->get_string()));
+//    std::cout<< "UPDATEEEEEEE: " << score->score << std::endl;
+}
 
 void UserInterface::show() {
 	window->draw(*UI_Background);
@@ -120,4 +131,7 @@ void UserInterface::show() {
 
 
 	window->draw(*next_wave_button);
+  update_score_text();
+  window->draw(*score_text);
+}
 }
