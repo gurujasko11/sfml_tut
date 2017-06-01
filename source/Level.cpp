@@ -18,7 +18,7 @@ void Level::move_bullets() {
 	for(std::list<Bullet*>::iterator it = bullets.begin();it != bullets.end();) {
 		(*it)->move();
 		if((*it)->enemy->get_distance_from((*it)->shape) < 2) {
-			(*it)->enemy->hit_by_bullet((*it)->power);
+			(*it)->hit();
 			if ((*it)->enemy->getHp() < 0) {
 				enemies_to_delete.insert((*it)->enemy);
 				std::cout << "DODAL ENEMY DO LLISTY" << std::endl;

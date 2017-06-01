@@ -27,11 +27,13 @@ void Bullet::move_shape_to_target()
 	shape->move(x*shift.x,x*shift.y);
 }
 
-Bullet::Bullet(sf::Shape* shape, Enemy* enemy, float power = 25, float speed = 5) :
+Bullet::Bullet(sf::Shape* shape, Enemy* enemy, float power = 25, float speed = 5, Color color) :
 				shape(shape),
 				enemy(enemy),
 				power(power),
-				speed(speed) {};
+				speed(speed),
+				color(color)
+{};
 
 Bullet::~Bullet() {
 //	game->remove_bullet(this);//TODO
@@ -40,3 +42,28 @@ Bullet::~Bullet() {
 sf::Shape* Bullet::get_shape() {
 	return shape;
 }
+
+void Bullet::hit(){
+    if(more_damaged()){
+        enemy->hit_by_bullet(this->power * 1.5);
+    }else if (less_damaged()){
+        enemy->hit_by_bullet(this->power * 0.5);
+    } else {
+        enemy->hit_by_bullet(this->power);
+    }
+}
+
+bool Bullet::more_damaged(){
+    return enemy->color != Color::NONE && this->color == enemy->color;
+}
+
+bool Bullet::less_damaged(){
+    if(this->color == Color::RED && enemy->color == Color::GREEN)
+        return true;
+    if(this->color == Color::GREEN && enemy->color == Color::BLUE)
+        return true;
+    if(this->color == Color::BLUE && enemy->color == Color::RED)
+        return true;
+    return false;
+}
+

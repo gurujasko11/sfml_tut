@@ -8,11 +8,13 @@
 Turret::Turret()
 {
 	find_target = std::bind(&FinderCatalog::closest_enemy_finder, this);
+	color = Color::NONE;
 }
 
-Turret::Turret(Cell_type cell_type, sf::RectangleShape* shape, int range)
+Turret::Turret(Cell_type cell_type, sf::RectangleShape* shape, int range, Color color)
 				: Cell(cell_type, shape),
-				  range(range)
+				  range(range),
+				  color(color)
 {
 	find_target = std::bind(&FinderCatalog::closest_enemy_finder, this);
 }

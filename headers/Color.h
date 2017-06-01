@@ -1,0 +1,6 @@
+#ifndef SFML_TUT_COLOR_H
+#define SFML_TUT_COLOR_H
+
+enum Color{NONE,RED,GREEN,BLUE};
+
+#endif //SFML_TUT_COLOR_H

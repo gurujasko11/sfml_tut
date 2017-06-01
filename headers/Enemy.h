@@ -5,10 +5,11 @@
 #include <list>
 #include "Background.h"
 #include "Movable.h"
+#include "Color.h"
 
 class Enemy : public Movable {
 public:
-		Enemy (sf::Shape* shape, float& speed, int hp);
+		Enemy (sf::Shape* shape, float& speed, int hp, Color color = Color::NONE);
 
 		bool is_on_target();
 		float get_distance_from(sf::Shape* shape);
@@ -25,6 +26,7 @@ public:
 		~Enemy ();
 		float base_hp;
 		float hp;
+        Color color;
 		void hit_by_bullet(int damage);
 private:
 		std::list<sf::Shape*>::iterator index;

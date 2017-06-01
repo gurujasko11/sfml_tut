@@ -12,11 +12,12 @@ void Enemy::next_target() {
 	}
 }
 
-Enemy::Enemy (sf::Shape* shape, float& speed, int hp = 100)
+Enemy::Enemy (sf::Shape* shape, float& speed, int hp = 100, Color color)
 				: shape(shape),
 				  speed(speed),
-					hp(hp),
-					base_hp(hp){
+                  hp(hp),
+                  base_hp(hp),
+                  color(color){
 	index = targets.begin();
 	hp_shape = new sf::RectangleShape(shape->getPosition());
 	hp_shape->setFillColor(sf::Color::Yellow);
