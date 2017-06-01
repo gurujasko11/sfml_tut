@@ -3,7 +3,7 @@
 #include <SFML/Graphics/Texture.hpp>
 #include "Score.h"
 
-static int fps       = 40;
+static int fps       = 100;
 static int cell_size = 32;
 
 static float turrets_ui_row_x = 512;

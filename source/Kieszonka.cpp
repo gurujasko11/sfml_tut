@@ -37,7 +37,6 @@ Turret* get_turret1() {
 Turret* get_turret2() {
 	sf::Texture* texture = new sf::Texture();
 	texture->loadFromFile("res/turret2.png");
-	
 	sf::RectangleShape* shape = new sf::RectangleShape(sf::Vector2<float>(32,32));
 	shape->setTexture(texture);
 	return new Turret(Cell::TURRET,shape,150,50,Color::BLUE);
