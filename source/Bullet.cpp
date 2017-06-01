@@ -45,12 +45,7 @@ sf::Shape* Bullet::get_shape() {
 
 void Bullet::hit(){
 		int damage = more_damaged() ? this->power * 2 : less_damaged() ? this->power / 2 : this -> power;
-		std::cout << "----------------------------" << std::endl;
-		std::cout << "Enemy hp: " << enemy->hp << std::endl;
-		std::cout << "Damage:   " << damage << std::endl;
 		enemy->hit_by_bullet(damage);
-		std::cout << "Enemy hp after: " << enemy->hp << std::endl;
-		std::cout << "----------------------------" << std::endl;
 }
 
 bool Bullet::more_damaged(){

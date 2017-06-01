@@ -2,7 +2,7 @@
 #define SFML_TUT_GLOBALVARIABLES_H
 #include <SFML/Graphics/Texture.hpp>
 
-static int fps       = 40;
+static int fps       = 100;
 static int cell_size = 32;
 
 static float turrets_ui_row_x = 512;
