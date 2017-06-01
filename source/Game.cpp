@@ -2,7 +2,7 @@
 #include "../headers/Game.h"
 
 Game::Game(sf::RenderWindow* window) : window(window){
-	userInterface = new UserInterface(window);
+	userInterface = new UserInterface(window, this);
 	stage = new Stage(window);
 }
 void Game::play() {
