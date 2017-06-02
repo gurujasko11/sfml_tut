@@ -38,7 +38,7 @@ bool Game::rm_turret(Turret* turret) {
 	bg_shape->setPosition(sf::Vector2f(turret->shape->getPosition().x,turret->shape->getPosition().y));
 	stage->background.BG_matrix[(int)(turret->shape->getPosition().x/cell_size)][(int)(turret->shape->getPosition().y/cell_size)] = new Cell(Cell::BACKGROUND,bg_shape);
 	stage->turrets.remove(turret);
-	std::cout << "przed remove turret w rm_turret" << std::endl;
+//	std::cout << "przed remove turret w rm_turret" << std::endl;
 	delete turret;
 }
 bool Game::can_tick() {

@@ -72,7 +72,7 @@ void UserInterface::handle_player_input(int x, int y) {
 	if(selected_turret != nullptr) {
 		if(is_sell_button_clicked(x,y)) {
 			game->rm_turret(selected_turret);
-			std::cout << "usunalem turret"  << std::endl;
+//			std::cout << "usunalem turret"  << std::endl;
 			selected_turret = nullptr;
 		}
 		if(is_upgrade_button_clicked(x,y)) {
@@ -133,5 +133,4 @@ void UserInterface::show() {
 	window->draw(*next_wave_button);
   update_score_text();
   window->draw(*score_text);
-}
 }
