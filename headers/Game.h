@@ -11,6 +11,7 @@ public:
 		sf::RenderWindow* window;
 		std::chrono::time_point<std::chrono::system_clock> time_of_last_tick = std::chrono::system_clock::now();
 		Stage* stage;
+		bool rm_turret(Turret* turret);
 		Game(sf::RenderWindow* window);
 		void play();
 		bool can_tick();
