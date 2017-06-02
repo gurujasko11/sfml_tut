@@ -1,8 +1,8 @@
 #include "../headers/Score.h"
 
 Score* Score::getInstance(){
-        static Score score;
-        return &score;
+    static Score score;
+    return &score;
 }
 
 void Score::increase(int value){
@@ -12,7 +12,6 @@ void Score::increase(int value){
 }
 
 std::string* Score::get_string(){
-    std::cout<< "GOWNO : " << this->score <<std::endl;
     std::cout << this << std::endl;
     return new std::string("Score: " + std::to_string(this->score));
 }
