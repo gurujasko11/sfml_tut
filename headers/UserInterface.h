@@ -13,6 +13,13 @@ private:
 		sf::RenderWindow* window;
 		sf::RectangleShape* UI_Background;
 		sf::Text* score_text;
+
+		//---------------Turret-----------//
+		sf::Text* lvl_text;
+		sf::Text* damage_text;
+		sf::Text* range_text;
+		sf::Text* interval_text;
+		//--------------------------------//
 public:
 		Game* game;
 		sf::RectangleShape* turret1;
@@ -28,6 +35,7 @@ public:
 		std::function<Turret*()> turret_builder;
 		UserInterface(sf::RenderWindow* window, Game* game);
         void update_score_text();
+		void update_turret_ui();
 		void show();
 		void handle_player_input(int x, int y);
 

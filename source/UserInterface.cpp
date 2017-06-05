@@ -66,6 +66,23 @@ UserInterface::UserInterface(sf::RenderWindow* window, Game* game) : window(wind
 	score_text->setCharacterSize(24);
     score_text->setString(*(score->get_string()));
     score_text->setPosition(sf::Vector2f(512.0f, 0.0f));
+
+    lvl_text = new sf::Text();
+    lvl_text->setFont(*font);
+    lvl_text->setCharacterSize(14);
+    lvl_text->setPosition(sf::Vector2f(672.0f, 200.0f));
+    damage_text = new sf::Text();
+    damage_text->setFont(*font);
+    damage_text->setCharacterSize(14);
+    damage_text->setPosition(sf::Vector2f(672.0f, 240.0f));
+    range_text = new sf::Text();
+    range_text->setFont(*font);
+    range_text->setCharacterSize(14);
+    range_text->setPosition(sf::Vector2f(672.0f, 280.0f));
+    interval_text = new sf::Text();
+    interval_text->setFont(*font);
+    interval_text->setCharacterSize(14);
+    interval_text->setPosition(sf::Vector2f(672.0f, 320.0f));
 }
 
 void UserInterface::handle_player_input(int x, int y) {
@@ -120,6 +137,15 @@ void UserInterface::update_score_text(){
 //    std::cout<< "UPDATEEEEEEE: " << score->score << std::endl;
 }
 
+void UserInterface::update_turret_ui(){
+    if(selected_turret != 0){
+        lvl_text     ->setString("Level:   ");// + std::to_string(selected_turret->level));
+        damage_text  ->setString("Damage:  " + std::to_string(selected_turret->damage));
+        range_text   ->setString("Range:   " + std::to_string(selected_turret->range));
+        interval_text->setString("Interval:" );//+ std::to_string(selected_turret->time_beetwen_shot));
+    }
+}
+
 void UserInterface::show() {
 	window->draw(*UI_Background);
 	window->draw(*sell_button);
@@ -130,7 +156,12 @@ void UserInterface::show() {
 	window->draw(*turret4);
 
 
-	window->draw(*next_wave_button);
+  window->draw(*next_wave_button);
   update_score_text();
   window->draw(*score_text);
+  update_turret_ui();
+  window->draw(*lvl_text);
+  window->draw(*damage_text);
+  window->draw(*range_text);
+  window->draw(*interval_text);
 }
