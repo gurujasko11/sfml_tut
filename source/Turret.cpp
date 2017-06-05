@@ -12,11 +12,12 @@ Turret::Turret()
 	find_target_type = find_function_type::NEAREST;
 }
 
-Turret::Turret(Cell_type cell_type, sf::RectangleShape* shape, int range, int damage, Color color)
+Turret::Turret(Cell_type cell_type, sf::RectangleShape* shape, int range, int damage, Color color,int lvl)
 				: Cell(cell_type, shape),
 				  range(range),
 				  damage(damage),
-				  color(color)
+				  color(color),
+				  lvl(lvl)
 {
 	find_target = std::bind(&FinderCatalog::closest_enemy_finder, this);
 	find_target_type = find_function_type::NEAREST;

@@ -203,10 +203,10 @@ void UserInterface::update_score_text(){
 
 void UserInterface::update_turret_ui(){
     if(selected_turret != nullptr){
-        lvl_text     ->setString("Level:   ");// + std::to_string(selected_turret->level));
+        lvl_text     ->setString("Level:   " + std::to_string(selected_turret->lvl));
         damage_text  ->setString("Damage:  " + std::to_string(selected_turret->damage));
         range_text   ->setString("Range:   " + std::to_string(selected_turret->range));
-        interval_text->setString("Interval:" );//+ std::to_string(selected_turret->time_beetwen_shot));
+        interval_text->setString("Interval:" + std::to_string((selected_turret->time_beetwen_shot).count()/1000).substr(0,3));
 	    set_tick_position();
     }
 }
