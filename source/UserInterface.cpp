@@ -117,6 +117,12 @@ UserInterface::UserInterface(sf::RenderWindow* window, Game* game) : window(wind
 
 void UserInterface::handle_player_input(int x, int y) {
 
+	if(is_next_wave_button_clicked(x,y)) {
+		game->stage->level++;
+		game->state = Game::game_state::LEVEL_STARTED;
+		return;
+	}
+
 	if(selected_turret != nullptr) {
 		if(is_sell_button_clicked(x,y)) {
 			game->rm_turret(selected_turret);
@@ -174,6 +180,12 @@ void UserInterface::handle_player_input(int x, int y) {
 //		std::cout<<"wywolalem turret builder" << std::endl;
 		game->stage->add_turret(turret_builder(),x / cell_size,y / cell_size);
 	}
+}
+
+bool UserInterface::is_next_wave_button_clicked(int x, int y) {
+	if(game->stage->is_level_active())
+		return false;
+	return x > next_wave_pos_x && y >next_wave_pos_y;
 }
 
 bool UserInterface::is_sell_button_clicked(int x, int y) {

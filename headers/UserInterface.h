@@ -47,6 +47,7 @@ public:
 		void set_tick_position();
 
 		bool is_sell_button_clicked(int x, int y);
+		bool is_next_wave_button_clicked(int x, int y);
 		bool is_upgrade_button_clicked(int x, int y);
 
 		bool is_shoot_strategy_button_clicked(int x, int y);

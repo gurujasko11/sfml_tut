@@ -7,6 +7,12 @@
 
 class Game {
 public:
+		enum game_state{
+				INITIAL,
+				LEVEL_NOT_STARTED,
+				LEVEL_STARTED,
+				STAGE_FINISHED
+		} state;
 		UserInterface* userInterface;
 		sf::RenderWindow* window;
 		std::chrono::time_point<std::chrono::system_clock> time_of_last_tick = std::chrono::system_clock::now();

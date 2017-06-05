@@ -13,6 +13,9 @@ int main()
 	Game game(&window);
 
 	game.stage->levels.push_back(new Level(&window));
+	game.stage->levels.push_back(new Level(&window));
+	game.stage->levels.push_back(new Level(&window));
+	game.stage->levels.push_back(new Level(&window));
 	game.stage->level = game.stage->levels.begin();
 //	std::cout<<"INICJACJA"<<std::endl;
 
