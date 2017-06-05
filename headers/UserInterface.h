@@ -31,6 +31,12 @@ public:
 		sf::RectangleShape* upgrade_button;
 		sf::RectangleShape* sell_button;
 
+		sf::RectangleShape* farthest_enemy_button;
+		sf::RectangleShape* nearest_enemy_button;
+		sf::RectangleShape* strongest_enemy_button;
+		sf::RectangleShape* weakest_enemy_button;
+		sf::RectangleShape* tick_shape;
+
 		Turret* selected_turret;
 		std::function<Turret*()> turret_builder;
 		UserInterface(sf::RenderWindow* window, Game* game);
@@ -38,9 +44,14 @@ public:
 		void update_turret_ui();
 		void show();
 		void handle_player_input(int x, int y);
+		void set_tick_position();
 
 		bool is_sell_button_clicked(int x, int y);
+		bool is_next_wave_button_clicked(int x, int y);
 		bool is_upgrade_button_clicked(int x, int y);
+
+		bool is_shoot_strategy_button_clicked(int x, int y);
+		Turret::find_function_type get_clicked_strategy(int x, int y);
 
 };
 

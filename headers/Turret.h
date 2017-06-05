@@ -13,6 +13,12 @@ class Turret : public Cell, public Movable
 {
 public:
 
+		enum find_function_type{
+				FARTHEST,
+				NEAREST,
+				STRONGEST,
+				WEAKEST
+		} find_target_type;
 		Level* level;
 		int range;
 		int damage;

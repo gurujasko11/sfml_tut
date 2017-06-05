@@ -4,10 +4,17 @@
 Game::Game(sf::RenderWindow* window) : window(window){
 	userInterface = new UserInterface(window, this);
 	stage = new Stage(window);
+	state = INITIAL;
 }
 void Game::play() {
 	if(!can_tick())
 		return;
+	if(!stage->is_level_active())
+		state = game_state::LEVEL_NOT_STARTED;
+	if(stage->level == stage->levels.end()) {
+		state = game_state::STAGE_FINISHED;
+		return;
+	}
 	window->clear();
 	userInterface->show();
 	stage->draw_background();
