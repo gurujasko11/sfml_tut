@@ -4,6 +4,7 @@
 #include <chrono>
 #include "UserInterface.h"
 #include "Stage.h"
+#include "WelcomeBoard.h"
 
 class Game {
 public:
@@ -13,6 +14,7 @@ public:
 				LEVEL_STARTED,
 				STAGE_FINISHED
 		} state;
+		WelcomeBoard* welcomeBoard;
 		UserInterface* userInterface;
 		sf::RenderWindow* window;
 		std::chrono::time_point<std::chrono::system_clock> time_of_last_tick = std::chrono::system_clock::now();

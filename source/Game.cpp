@@ -5,8 +5,28 @@ Game::Game(sf::RenderWindow* window) : window(window){
 	userInterface = new UserInterface(window, this);
 	stage = new Stage(window);
 	state = INITIAL;
+	welcomeBoard = new WelcomeBoard(window);
 }
 void Game::play() {
+	sf::Event event;
+	while (window->pollEvent(event))
+	{
+		switch(event.type)
+		{
+			case sf::Event::Closed:
+				window->close();
+				break;
+			case sf::Event::MouseButtonPressed:
+				userInterface->handle_player_input(sf::Mouse::getPosition(*window).x,sf::Mouse::getPosition(*window).y);
+				break;
+		}
+	}
+	if(state == INITIAL) {
+//		state = LEVEL_NOT_STARTED;
+		welcomeBoard->show();
+		window->display();
+		return;
+	}
 	if(!can_tick())
 		return;
 	if(!stage->is_level_active())
@@ -33,11 +53,11 @@ void Game::play() {
 	}
 //	std::cout<<"Przed draw_turrets()"<<std::endl;
 	stage->draw_turrets();
+	userInterface->draw_selected_turret();
 	time_of_last_tick = std::chrono::system_clock::now();
 }
 
 bool Game::rm_turret(Turret* turret) {
-
 	sf::Texture* bgTexture = new sf::Texture();
 	bgTexture->loadFromFile("res/bg_cell.png");
 	sf::RectangleShape* bg_shape = new sf::RectangleShape(sf::Vector2<float>(32,32));

@@ -44,7 +44,7 @@ void Stage::draw_level() {
 }
 
 bool Stage::is_level_active() {
-	if(level == levels.end())
+	if(level == levels.end() || *level == nullptr)
 		return false;
 	if((*level)->enemies.empty() && (*level)->pushStrategy->is_done())
 		return false;

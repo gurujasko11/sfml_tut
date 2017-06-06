@@ -30,6 +30,9 @@ UserInterface::UserInterface(sf::RenderWindow* window, Game* game) : window(wind
 	sf::Texture* upgrade_texture = new sf::Texture();
 	sf::Texture* sell_texture = new sf::Texture();
 	sf::Texture* tick_texture = new sf::Texture();
+
+	sf::Texture* selected_turret_texture = new sf::Texture();
+
 	next_wave_texture->loadFromFile("res/new_wave_button.png");
 	upgrade_texture->loadFromFile("res/upgrade_button.png");
 	sell_texture->loadFromFile("res/sell_button.png");
@@ -42,6 +45,7 @@ UserInterface::UserInterface(sf::RenderWindow* window, Game* game) : window(wind
 	strongest_enemy_texture->loadFromFile("res/attack_the_strongest.png");
 	weakest_enemy_texture->loadFromFile("res/attack_the_weakest.png");
 	tick_texture->loadFromFile("res/tick.png");
+	selected_turret_texture->loadFromFile("res/selected_turret.png");
 
 	next_wave_button = new sf::RectangleShape(sf::Vector2<float>(next_wave_size_x,next_wave_size_y));
 	next_wave_button->setTexture(next_wave_texture);
@@ -90,6 +94,9 @@ UserInterface::UserInterface(sf::RenderWindow* window, Game* game) : window(wind
 	tick_shape= new sf::RectangleShape(sf::Vector2<float>(turrets_ui_cell_size/2,turrets_ui_cell_size/2));
 	tick_shape->setTexture(tick_texture);
 
+	selected_turret_shape = new sf::RectangleShape(sf::Vector2<float>(cell_size,cell_size));
+	selected_turret_shape ->setTexture(selected_turret_texture);
+
 	font->loadFromFile("res/arial.ttf");
   score_text = new sf::Text();
   score_text->setFont(*font);
@@ -117,6 +124,13 @@ UserInterface::UserInterface(sf::RenderWindow* window, Game* game) : window(wind
 
 void UserInterface::handle_player_input(int x, int y) {
 
+	if(game->state == Game::game_state::INITIAL) {
+		if(game->welcomeBoard->is_play_button_pressed(x,y)){
+			std::cout << "INITIAL BUTTON PRESSED" << std::endl;
+			game->state = Game::game_state::LEVEL_NOT_STARTED;
+		}
+		return;
+	}
 	if(is_next_wave_button_clicked(x,y)) {
 		game->stage->level++;
 		game->state = Game::game_state::LEVEL_STARTED;
@@ -130,7 +144,8 @@ void UserInterface::handle_player_input(int x, int y) {
 			selected_turret = nullptr;
 		}
 		if(is_upgrade_button_clicked(x,y)) {
-			//TODO tu ma sie dziac upgrade
+			if(selected_turret->lvl < 10)
+				selected_turret->lvl++;
 		}
 		if(is_shoot_strategy_button_clicked(x,y)) {
 //						std::cout << "UPDATE " <<get_clicked_strategy(x,y) << std::endl;
@@ -157,6 +172,7 @@ void UserInterface::handle_player_input(int x, int y) {
 	if(x < turrets_ui_row_x) {
 		if(game->stage->background.BG_matrix[x/cell_size][y/cell_size]->cell_type == Cell::TURRET) {
 			selected_turret = (Turret*)game->stage->background.BG_matrix[x/cell_size][y/cell_size];
+			selected_turret_shape->setPosition(selected_turret->get_shape()->getPosition());
 		}
 		else
 			selected_turret = nullptr;
@@ -204,9 +220,9 @@ void UserInterface::update_score_text(){
 void UserInterface::update_turret_ui(){
     if(selected_turret != nullptr){
         lvl_text     ->setString("Level:   " + std::to_string(selected_turret->lvl));
-        damage_text  ->setString("Damage:  " + std::to_string(selected_turret->damage));
-        range_text   ->setString("Range:   " + std::to_string(selected_turret->range));
-        interval_text->setString("Interval:" + std::to_string((selected_turret->time_beetwen_shot).count()/1000).substr(0,3));
+        damage_text  ->setString("Damage:  " + std::to_string(selected_turret->get_fixed_damage()));
+        range_text   ->setString("Range:   " + std::to_string(selected_turret->get_fixed_range()));
+        interval_text->setString("Interval:" + std::to_string((selected_turret->get_fixed_time()).count()));
 	    set_tick_position();
     }
 }
@@ -241,6 +257,11 @@ Turret::find_function_type UserInterface::get_clicked_strategy(int x, int y) {
 	if(y < 320)
 		return Turret::find_function_type::STRONGEST;
 	return Turret::find_function_type::WEAKEST;
+}
+
+void UserInterface::draw_selected_turret() {
+	if(selected_turret != nullptr)
+		window->draw(*selected_turret_shape);
 }
 
 void UserInterface::show() {
