@@ -102,7 +102,7 @@ UserInterface::UserInterface(sf::RenderWindow* window, Game* game) : window(wind
   score_text->setFont(*font);
 	score_text->setCharacterSize(24);
   score_text->setString(*(score->get_string()));
-  score_text->setPosition(sf::Vector2f(512.0f, 0.0f));
+  score_text->setPosition(sf::Vector2f(517.0f, 0.0f));
 
   lvl_text = new sf::Text();
   lvl_text->setFont(*font);
@@ -120,6 +120,16 @@ UserInterface::UserInterface(sf::RenderWindow* window, Game* game) : window(wind
   interval_text->setFont(*font);
   interval_text->setCharacterSize(14);
   interval_text->setPosition(sf::Vector2f(672.0f, 320.0f));
+
+  money_text = new sf::Text();
+  money_text->setFont(*font);
+  money_text->setCharacterSize(14);
+  money_text->setPosition(sf::Vector2f(517.0f, 40.0f));
+  game_hp_text = new sf::Text();
+  game_hp_text->setFont(*font);
+  game_hp_text->setCharacterSize(14);
+  game_hp_text->setPosition(sf::Vector2f(517.0f, 512.0f-160.0f));
+
 }
 
 void UserInterface::handle_player_input(int x, int y) {

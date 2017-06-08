@@ -1,6 +1,7 @@
 #include <cmath>
 #include <SFML/Graphics.hpp>
 #include "../headers/Enemy.h"
+#include "../headers/Game.h"
 #include "../headers/GlobalVariables.h"
 
 void Enemy::next_target() {
@@ -77,6 +78,10 @@ int Enemy::getHp () const {
 
 sf::Shape* Enemy::get_shape(){
 	return shape;
+}
+
+void Enemy::set_game(Game* game){
+    this->game=game;
 }
 
 Enemy::~Enemy() {

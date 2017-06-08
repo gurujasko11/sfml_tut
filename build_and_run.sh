@@ -16,8 +16,9 @@ g++ -std=c++11 -I headers/ -c source/Stage.cpp -o build/Stage.o
 g++ -std=c++11 -I headers/ -c source/Game.cpp -o build/Game.o
 g++ -std=c++11 -I headers/ -c source/LinearPushStrategy.cpp -o build/LinearPushStrategy.o
 g++ -std=c++11 -I headers/ -c source/WavyPushStrategy.cpp -o build/WavyPushStrategy.o
+g++ -std=c++11 -I headers/ -c source/WelcomeBoard.cpp -o build/WelcomeBoard.o
 g++ -std=c++11 -I headers/ -c source/main.cpp -o build/main.o
 
-g++ -std=c++11 build/main.o build/Score.o build/PushStrategy.o build/LinearPushStrategy.o build/WavyPushStrategy.o build/Kieszonka.o build/Stage.o build/Level.o build/Movable.o build/Cell.o build/Background.o build/Bullet.o build/FinderCatalog.o build/Turret.o build/BG_Builder.o build/Enemy.o \
+g++ -std=c++11 build/main.o build/WelcomeBoard.o build/Score.o build/PushStrategy.o build/LinearPushStrategy.o build/WavyPushStrategy.o build/Kieszonka.o build/Stage.o build/Level.o build/Movable.o build/Cell.o build/Background.o build/Bullet.o build/FinderCatalog.o build/Turret.o build/BG_Builder.o build/Enemy.o \
 build/UserInterface.o build/Game.o -o sfml-app -lsfml-graphics -lsfml-window -lsfml-system
 ./sfml-app

@@ -7,14 +7,18 @@
 #include "Movable.h"
 #include "Color.h"
 
+class Game;
+
 class Enemy : public Movable {
 public:
 		Enemy (sf::Shape* shape, float& speed, int hp, Color color = Color::NONE);
 
+		Game* game = nullptr;
 		bool is_on_target();
 		float get_distance_from(sf::Shape* shape);
 		void move() override;
 		void next_target();
+		void set_game(Game* game);
 
 		static std::list<sf::Shape*> targets;
 		sf::Shape* shape;

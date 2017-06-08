@@ -14,6 +14,9 @@ private:
 		sf::RectangleShape* UI_Background;
 		sf::Text* score_text;
 
+
+        sf::Text* game_hp_text;
+        sf::Text* money_text;
 		//---------------Turret-----------//
 		sf::Text* lvl_text;
 		sf::Text* damage_text;
