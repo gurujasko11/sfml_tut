@@ -23,6 +23,11 @@ static Score* score = Score::getInstance();
 
 static Hp* game_hp = Hp::getInstance();
 
+static int turret_cost1 = 10;
+static int turret_cost2 = 20;
+static int turret_cost3 = 30;
+static int turret_cost4 = 40;
+
 
 
 #endif //SFML_TUT_GLOBALVARIABLES_H

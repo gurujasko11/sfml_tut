@@ -45,6 +45,7 @@ public:
 
 		Turret* selected_turret;
 		std::function<Turret*()> turret_builder;
+		int cost;
 		UserInterface(sf::RenderWindow* window, Game* game);
         void update_score_text();
 		void update_turret_ui();

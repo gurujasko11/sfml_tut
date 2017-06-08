@@ -198,21 +198,33 @@ void UserInterface::handle_player_input(int x, int y) {
 	if(y > turrets_ui_row_y && y < turrets_ui_row_y+(4*turrets_ui_cell_size)) {
 		if(x > turrets_ui_row_x && x < turrets_ui_row_x + turrets_ui_cell_size) {
 			turret_builder = get_turret1;
-		}
+            cost = turret_cost1;
+            std::cout << "kurwa " << std::endl;
+            std::cout << cost << std::endl;
+        }
 		if(x > turrets_ui_row_x + turrets_ui_cell_size && x < turrets_ui_row_x + (2*turrets_ui_cell_size)) {
 			turret_builder = get_turret2;
+            cost = turret_cost2;
 		}
 		if(x > turrets_ui_row_x + (2*turrets_ui_cell_size)&& x < turrets_ui_row_x + (3*turrets_ui_cell_size)) {
 			turret_builder = get_turret3;
+            cost = turret_cost3;
 		}
 		if(x > turrets_ui_row_x + (3*turrets_ui_cell_size) && x < turrets_ui_row_x + (4*turrets_ui_cell_size)) {
 			turret_builder = get_turret4;
+            cost = turret_cost4;
 		}
 	}
 	if(x < turrets_ui_row_x && turret_builder != nullptr) {
-		turret_builder();
+		//turret_builder();
 //		std::cout<<"wywolalem turret builder" << std::endl;
-		game->stage->add_turret(turret_builder(),x / cell_size,y / cell_size);
+        if(cost <= game->money) {
+            game->stage->add_turret(turret_builder(), x / cell_size, y / cell_size);
+            game->money -= cost;
+            std::cout << game->money << std::endl;
+            std::cout << cost << std::endl;
+        }
+
 	}
 }
 
@@ -231,7 +243,12 @@ bool UserInterface::is_upgrade_button_clicked(int x, int y) {
 	&& y > upgrade_button->getPosition().y && y < upgrade_button->getPosition().y + upgrade_button->getSize().y;
 }
 void UserInterface::update_score_text(){
-    score_text->setString(*(score->get_string()));
+    static int last_score = score->score;
+    if(last_score != score->score) {
+        score_text->setString(*(score->get_string()));
+        game->money += (score->score - last_score)/2;
+        last_score = score->score;
+    }
 //    std::cout<< "UPDATEEEEEEE: " << score->score << std::endl;
 }
 
