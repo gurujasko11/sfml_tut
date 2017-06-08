@@ -1,11 +1,10 @@
 #include <SFML/Graphics/Texture.hpp>
 #include <iostream>
 #include "../headers/UserInterface.h"
-#include "../headers/GlobalVariables.h"
 #include "../headers/Kieszonka.h"
-#include "Game.h"
 #include "../headers/Game.h"
 #include "../headers/FinderCatalog.h"
+#include "../headers/GlobalVariables.h"
 
 UserInterface::UserInterface(sf::RenderWindow* window, Game* game) : window(window), game(game) {
 	UI_Background = new sf::RectangleShape(sf::Vector2f(320.0f,512.0f));
@@ -134,6 +133,15 @@ UserInterface::UserInterface(sf::RenderWindow* window, Game* game) : window(wind
 
 void UserInterface::handle_player_input(int x, int y) {
 
+
+	if(game->state == Game::game_state::GAME_OVER) {
+		if(game->welcomeBoard->is_play_button_pressed(x,y)){
+			std::cout << "INITIAL BUTTON PRESSED" << std::endl;
+			game_hp->getInstance()->hp = 1;
+			game->state = Game::game_state::INITIAL;
+		}
+		return;
+	}
 	if(game->state == Game::game_state::INITIAL) {
 		if(game->welcomeBoard->is_play_button_pressed(x,y)){
 			std::cout << "INITIAL BUTTON PRESSED" << std::endl;
@@ -238,7 +246,7 @@ void UserInterface::update_turret_ui(){
 }
 
 void UserInterface::update_game_hp_text(){
-    game_hp_text->setString("HP: " + std::to_string(game->game_hp));
+    game_hp_text->setString("HP: " + std::to_string(game_hp->getInstance()->hp));
 }
 
 void UserInterface::update_money_text(){

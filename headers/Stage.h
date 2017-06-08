@@ -29,5 +29,6 @@ public:
 		Stage(sf::RenderWindow* window);
 
 
+
 };
 #endif //SFML_TUT_STAGE_H

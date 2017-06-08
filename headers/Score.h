@@ -9,7 +9,6 @@ public:
     std::string* get_string();
     int score;
     static Score* getInstance();
-private:
 };
 
 #endif //SFML_TUT_SCORE_H

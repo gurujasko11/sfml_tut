@@ -12,7 +12,8 @@ public:
 				INITIAL,
 				LEVEL_NOT_STARTED,
 				LEVEL_STARTED,
-				STAGE_FINISHED
+				STAGE_FINISHED,
+				GAME_OVER
 		} state;
 		WelcomeBoard* welcomeBoard;
 		UserInterface* userInterface;
@@ -23,7 +24,6 @@ public:
 		Game(sf::RenderWindow* window);
 		void play();
 		bool can_tick();
-		int game_hp = 100;
 		int money = 100;
 
 };
