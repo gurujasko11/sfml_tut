@@ -47,6 +47,8 @@ public:
 		UserInterface(sf::RenderWindow* window, Game* game);
         void update_score_text();
 		void update_turret_ui();
+        void update_game_hp_text();
+        void update_money_text();
 		void show();
 		void handle_player_input(int x, int y);
 		void set_tick_position();

@@ -23,6 +23,8 @@ public:
 		Game(sf::RenderWindow* window);
 		void play();
 		bool can_tick();
+		int game_hp = 100;
+		int money = 100;
 
 };
 #endif //SFML_TUT_GAMEH

@@ -237,6 +237,14 @@ void UserInterface::update_turret_ui(){
     }
 }
 
+void UserInterface::update_game_hp_text(){
+    game_hp_text->setString("HP: " + std::to_string(game->game_hp));
+}
+
+void UserInterface::update_money_text(){
+    money_text->setString("Money: " + std::to_string(game->money));
+}
+
 void UserInterface::set_tick_position() {
 	switch(selected_turret->find_target_type){
 		case Turret::find_function_type::NEAREST:
@@ -288,15 +296,19 @@ void UserInterface::show() {
   update_score_text();
   window->draw(*score_text);
   update_turret_ui();
-	if(selected_turret != nullptr) {
-		window->draw(*lvl_text);
-		window->draw(*damage_text);
-		window->draw(*range_text);
-		window->draw(*interval_text);
-		window->draw(*farthest_enemy_button);
-		window->draw(*nearest_enemy_button);
-		window->draw(*strongest_enemy_button);
-		window->draw(*weakest_enemy_button);
-		window->draw(*tick_shape);
-	}
+  update_game_hp_text();
+  update_money_text();
+  window->draw(*game_hp_text);
+  window->draw(*money_text);
+  if(selected_turret != nullptr) {
+  	window->draw(*lvl_text);
+  	window->draw(*damage_text);
+  	window->draw(*range_text);
+  	window->draw(*interval_text);
+  	window->draw(*farthest_enemy_button);
+  	window->draw(*nearest_enemy_button);
+  	window->draw(*strongest_enemy_button);
+  	window->draw(*weakest_enemy_button);
+  	window->draw(*tick_shape);
+  }
 }
