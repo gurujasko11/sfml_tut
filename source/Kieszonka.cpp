@@ -1,6 +1,7 @@
 #include "../headers/Background.h"
 #include "../headers/BG_Builder.h"
-#include "../headers/Turret.h"
+//#include "../headers/Turret.h"
+#include "../headers/TurretHenio.h"
 
 Background get_background1() {
 	BG_Builder bg_builder;
@@ -32,7 +33,7 @@ Turret* get_turret1() {
 	texture->loadFromFile("res/turret1.png");
 	sf::RectangleShape* shape = new sf::RectangleShape(sf::Vector2<float>(32,32));
 	shape->setTexture(texture);
-	return new Turret(Cell::TURRET,shape,50, 50);
+	return new TurretHenio(Cell::TURRET,shape,50, 50);
 }
 Turret* get_turret2() {
 	sf::Texture* texture = new sf::Texture();

@@ -37,7 +37,7 @@ public:
 		std::chrono::milliseconds get_fixed_time();
 		double get_lvl_factor();
 		int get_lvl_factor_int();
-		void shoot();
+		virtual void shoot();
 		bool can_shoot();
 		void move() override;
 		sf::Shape* get_shape() override;
