@@ -7,6 +7,7 @@
 void Enemy::next_target() {
 	index++;
 	if(index == targets.end()) {
+		game_hp->getInstance()->hp--;
 		index = targets.begin();
 		this->shape->setPosition(targets.front()->getPosition());
 		this->hp_shape->setPosition(targets.front()->getPosition());
@@ -78,10 +79,6 @@ int Enemy::getHp () const {
 
 sf::Shape* Enemy::get_shape(){
 	return shape;
-}
-
-void Enemy::set_game(Game* game){
-    this->game=game;
 }
 
 Enemy::~Enemy() {

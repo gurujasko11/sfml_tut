@@ -5,6 +5,7 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <functional>
 #include "Turret.h"
+#include "GlobalVariables.h"
 
 class Game;
 
@@ -15,8 +16,8 @@ private:
 		sf::Text* score_text;
 
 
-        sf::Text* game_hp_text;
-        sf::Text* money_text;
+		sf::Text* game_hp_text;
+    sf::Text* money_text;
 		//---------------Turret-----------//
 		sf::Text* lvl_text;
 		sf::Text* damage_text;
@@ -61,7 +62,6 @@ public:
 
 		bool is_shoot_strategy_button_clicked(int x, int y);
 		Turret::find_function_type get_clicked_strategy(int x, int y);
-
 };
 
 #endif //SFML_TUT_USERINTERFACE_H

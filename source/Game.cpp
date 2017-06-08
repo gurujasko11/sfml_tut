@@ -1,7 +1,9 @@
 #include <iostream>
 #include "../headers/Game.h"
+#include "../headers/GlobalVariables.h"
 
 Game::Game(sf::RenderWindow* window) : window(window){
+	game_hp->getInstance()->hp = 1;
 	userInterface = new UserInterface(window, this);
 	stage = new Stage(window);
 	state = INITIAL;
@@ -23,7 +25,15 @@ void Game::play() {
 	}
 	if(state == INITIAL) {
 //		state = LEVEL_NOT_STARTED;
-		welcomeBoard->show();
+		welcomeBoard->showWelcomeBoard();
+		window->display();
+		return;
+	}
+	if(state == GAME_OVER) {
+		if(stage != NULL) {
+		}
+		welcomeBoard->score = score->score;
+		welcomeBoard->showLooserBoard();
 		window->display();
 		return;
 	}
@@ -55,6 +65,9 @@ void Game::play() {
 	stage->draw_turrets();
 	userInterface->draw_selected_turret();
 	time_of_last_tick = std::chrono::system_clock::now();
+	if(game_hp->getInstance()->hp  <= 0 ) {
+		state = GAME_OVER;
+	}
 }
 
 bool Game::rm_turret(Turret* turret) {
